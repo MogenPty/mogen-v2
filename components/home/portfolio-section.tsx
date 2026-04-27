@@ -5,38 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import HighlightedText from "@/components/shared/highlighted-text";
 import { Button } from "@/components/ui/button";
+import portfolioItems from "@/data/portfolio";
 import { createPageUrl } from "@/lib/utils";
-
-const portfolioItems = [
-  {
-    title: "MOLEFE PLUMBING",
-    category: "Local Business",
-    description:
-      "Modern website with WhatsApp booking and customer testimonials",
-    image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=400&fit=crop",
-    color: "bg-blue-600",
-    url: undefined,
-  },
-  {
-    title: "LOTWO (NGO)",
-    category: "Non-Profit",
-    description:
-      "Warm, inviting site with donation system and volunteer portal",
-    image:
-      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop",
-    color: "bg-purple-500",
-  },
-  {
-    title: "TECHSTART SA",
-    category: "Startup",
-    description:
-      "Bold landing page with lead capture and analytics integration",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-    color: "bg-lime-400",
-  },
-];
 
 export default function PortfolioSection() {
   return (
@@ -62,7 +32,7 @@ export default function PortfolioSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {portfolioItems.map((item, index) => (
+          {portfolioItems.slice(0, 3).map((item, index) => (
             <div
               key={item.title}
               className={`bg-white neo-brutalist-border neo-brutalist-shadow transform ${index % 2 === 0 ? "rotate-1" : "-rotate-1"} hover:scale-105 transition-all duration-300 overflow-hidden`}
@@ -88,7 +58,7 @@ export default function PortfolioSection() {
                   {item.description}
                 </p>
                 <Link
-                  href={item.url ?? createPageUrl("Portfolio")}
+                  href={`/portfolio/${item.slug}`}
                   className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:underline"
                   aria-label={`View project: ${item.title}`}
                 >
@@ -102,7 +72,7 @@ export default function PortfolioSection() {
 
         <div className="text-center">
           <Link href={createPageUrl("Portfolio")}>
-            <Button className="bg-purple-500 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-purple-600 transform hover:scale-105 transition-all duration-200">
+            <Button className="bg-purple-500 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-purple-600 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
               VIEW ALL WORK
               <ArrowRightIcon className="ml-2 w-5 h-5" />
             </Button>

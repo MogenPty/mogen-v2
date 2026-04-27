@@ -1,5 +1,6 @@
 "use client";
 
+import { toSnakeCase } from "@/lib/utils";
 import { QuotesIcon, StarIcon } from "@phosphor-icons/react";
 
 export default function TestimonialsSection() {
@@ -9,7 +10,7 @@ export default function TestimonialsSection() {
       business: "Molefe Plumbing Services",
       content:
         "Mogen built us an amazing website that brings in new customers every week. Professional, fast, and affordable!",
-      rating: 5,
+      rating: 4,
       color: "bg-blue-600",
     },
     {
@@ -48,7 +49,7 @@ export default function TestimonialsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
-              key={testimonial.name}
+              key={`${testimonial.name}_${index}`}
               className={`bg-white p-8 neo-brutalist-border neo-brutalist-shadow transform ${index % 2 === 0 ? "rotate-1" : "-rotate-1"}`}
             >
               <div className="mb-4">
@@ -60,10 +61,11 @@ export default function TestimonialsSection() {
                 &ldquo;{testimonial.content}&rdquo;
               </p>
               <div className="flex items-center mb-4">
-                {[...Array(testimonial.rating)].map((p) => (
+                {[...Array(testimonial.rating)].map((_, i) => (
                   <StarIcon
-                    key={p}
-                    className="w-5 h-5 text-yellow-400 fill-current"
+                    key={`${toSnakeCase(testimonial.name)}_${testimonial.rating}_${i}`}
+                    className="w-5 h-5 text-yellow-400 fill-yellow-500"
+                    aria-autocomplete="both"
                   />
                 ))}
               </div>

@@ -65,7 +65,7 @@ export default function CTASection() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <Link href={createPageUrl("Contact")}>
-                  <Button className="bg-purple-500 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-purple-600 transform hover:scale-105 transition-all duration-200">
+                  <Button className="bg-purple-500 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-purple-600 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                     START YOUR PROJECT
                     <ArrowRightIcon className="ml-2 w-5 h-5" />
                   </Button>
@@ -73,7 +73,7 @@ export default function CTASection() {
                 <Link href={createPageUrl("Pricing")}>
                   <Button
                     variant="outline"
-                    className="font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow bg-white hover:bg-gray-100 transform hover:scale-105 transition-all duration-200"
+                    className="font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow bg-white hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer"
                   >
                     VIEW PACKAGES
                   </Button>
@@ -109,7 +109,7 @@ export default function CTASection() {
                     />
                     <Button
                       type="submit"
-                      className="bg-lime-400 text-black font-black neo-brutalist-border neo-brutalist-shadow-sm"
+                      className="bg-lime-400 text-black font-black neo-brutalist-border neo-brutalist-shadow-sm hover:cursor-pointer"
                     >
                       GO!
                     </Button>

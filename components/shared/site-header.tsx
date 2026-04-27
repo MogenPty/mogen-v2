@@ -20,8 +20,13 @@ const navigationItems = [
 ];
 
 export default function SiteHeader() {
-  const location = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = usePathname();
+
+  let selectedNav = location;
+
+  if (selectedNav.split("/").length > 0)
+    selectedNav = `/${selectedNav.split("/")[1]}`;
 
   return (
     <header className="bg-white neo-brutalist-border border-t-0 border-l-0 border-r-0 sticky top-0 z-50">
@@ -41,7 +46,7 @@ export default function SiteHeader() {
                 key={item.title}
                 href={item.url}
                 className={`px-3 py-2 font-bold text-sm transition-all duration-200 ${
-                  location === item.url
+                  item.url === selectedNav
                     ? "bg-purple-500 text-white neo-brutalist-border neo-brutalist-shadow-sm transform -rotate-1"
                     : "hover:bg-lime-400 hover:neo-brutalist-border hover:neo-brutalist-shadow-sm hover:transform hover:-rotate-1"
                 }`}
@@ -54,7 +59,7 @@ export default function SiteHeader() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Link href={createPageUrl("Contact")}>
-              <Button className="bg-lime-400 text-black font-black neo-brutalist-border neo-brutalist-shadow hover:bg-lime-500 transform hover:scale-105 transition-all duration-200">
+              <Button className="bg-lime-400 text-black font-black neo-brutalist-border neo-brutalist-shadow hover:bg-lime-500 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                 GET QUOTE
               </Button>
             </Link>

@@ -53,13 +53,13 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 text-center md:text-left">
               <Link href={createPageUrl("Contact")}>
-                <Button className="bg-blue-600 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-blue-700 transform hover:scale-105 transition-all duration-200">
+                <Button className="bg-blue-600 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                   GET FREE QUOTE
                   <ArrowRightIcon className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link href={createPageUrl("Portfolio")}>
-                <Button className="font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow bg-white hover:bg-pink-100 transform hover:scale-105 transition-all duration-200">
+                <Button className="font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow bg-white hover:bg-pink-100 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                   VIEW WORK
                 </Button>
               </Link>
