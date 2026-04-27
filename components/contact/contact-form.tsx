@@ -23,7 +23,7 @@ export default function ContactForm() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     // Handle form submission logic here
 
@@ -125,7 +125,7 @@ export default function ContactForm() {
               >
                 <SelectTrigger
                   className="neo-brutalist-border font-bold"
-                  placeholder="Select service"
+                  // placeholder="Select service"
                 ></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="website">WEBSITE DEVELOPMENT</SelectItem>
@@ -149,7 +149,7 @@ export default function ContactForm() {
             >
               <SelectTrigger
                 className="neo-brutalist-border font-bold"
-                placeholder="Select budget"
+                // placeholder="Select budget"
               ></SelectTrigger>
               <SelectContent>
                 <SelectItem value="5000-10000">R5,000 - R10,000</SelectItem>

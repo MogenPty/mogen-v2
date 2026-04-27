@@ -85,17 +85,19 @@ export default function PortfolioPage() {
                     />
                     <span>VIEW DETAILS</span>
                   </Link>
-                  <Link
-                    href={item.clientUrl}
-                    className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:underline"
-                  >
-                    <ArrowSquareOutIcon
-                      className="w-4 h-4"
-                      aria-hidden="true"
-                      focusable="false"
-                    />
-                    <span>SHOWCASE</span>
-                  </Link>
+                  {item.clientUrl && (
+                    <Link
+                      href={item.clientUrl}
+                      className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:underline"
+                    >
+                      <ArrowSquareOutIcon
+                        className="w-4 h-4"
+                        aria-hidden="true"
+                        focusable="false"
+                      />
+                      <span>SHOWCASE</span>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
