@@ -1,12 +1,40 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ServiceDetails from "@/components/service/service-details";
 import ServiceHeader from "@/components/service/service-header";
 import BackLink from "@/components/shared/back-link";
 import Technologies from "@/components/shared/technologies";
 import { services } from "@/data/services";
+import {
+  BASE_KEYWORDS,
+  SERVICE_KEYWORDS,
+  SERVICE_DESCRIPTIONS,
+} from "@/data/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+// app/services/[slug]/page.tsx
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services.find((item) => item.slug === slug);
+
+  if (!service) return { title: "Service Not Found" };
+
+  return {
+    title: service.title,
+    description: SERVICE_DESCRIPTIONS[service.slug] ?? service.description,
+    keywords: [...(SERVICE_KEYWORDS[service.slug] ?? []), ...BASE_KEYWORDS],
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
+    openGraph: {
+      url: `/services/${service.slug}`,
+      type: "website",
+    },
+  };
 }
 
 export default async function Service({ params }: Props) {

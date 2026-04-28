@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Markdown from "react-markdown";
 
@@ -6,6 +7,7 @@ import ArticleNotFound from "@/components/blog/article-not-found";
 import BlogBackLink from "@/components/blog/blog-back-link";
 import CTASection from "@/components/home/cta-section";
 import { sampleArticles } from "@/data/articles";
+import { BASE_KEYWORDS } from "@/data/seo";
 import { generateSlug, list } from "@/lib/utils";
 
 // import { Skeleton } from "@/components/ui/skeleton";
@@ -14,12 +16,65 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export default async function PortfolioDetail({ params }: Props) {
-  const { slug } = await params;
+export async function generateStaticParams() {
+  const articles = await list(sampleArticles);
+  return articles.map((article) => ({
+    slug: generateSlug(article.title),
+  }));
+}
+
+const getArticleBySlug = async (slug: string) => {
   const articles = await list(sampleArticles);
   const article = articles.find(
     (item) => (item.slug ?? generateSlug(item.title)) === slug,
   );
+  return article;
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) {
+    return {
+      title: "Article Not Found",
+      description: "The requested article could not be found.",
+    };
+  }
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    keywords: [
+      ...(article.tags ?? []).map((tag) => tag.toLowerCase()),
+      ...(article.category ?? "").toLowerCase(),
+      ...article.title.toLowerCase().split(" "),
+      ...BASE_KEYWORDS,
+    ],
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    authors: [{ name: article.author }, { name: "MOGEN" }],
+    openGraph: {
+      url: `/blog/${slug}`,
+      type: "article",
+      publishedTime: article.publishedAt,
+      modifiedTime: article.publishedAt,
+      authors: ["MOGEN", "/about"],
+      section: article.category,
+      tags: article.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
+};
+
+export default async function PortfolioDetail({ params }: Props) {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
 
   if (!article) {
     return <ArticleNotFound />;

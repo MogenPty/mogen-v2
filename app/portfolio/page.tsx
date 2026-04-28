@@ -7,6 +7,30 @@ import { useState } from "react";
 import PortfolioHeader from "@/components/portfolio/header";
 import portfolioItems from "@/data/portfolio";
 import ServiceCTA from "@/components/service/cta-section";
+import { BASE_KEYWORDS } from "@/data/seo";
+
+export const metadata = {
+  title: "Our Portfolio",
+  description:
+    "Browse MOGEN's portfolio of web development projects — local businesses, NGOs, startups, healthcare, and fintech across South Africa.",
+  keywords: [
+    "web design portfolio",
+    "website examples south africa",
+    "web development case studies",
+    "local business websites pretoria",
+    "NGO website design",
+    "startup web development",
+    "affordable website examples",
+    ...BASE_KEYWORDS,
+  ],
+  alternates: {
+    canonical: "/portfolio",
+  },
+  openGraph: {
+    url: "/portfolio",
+    type: "website",
+  },
+};
 
 export default function PortfolioPage() {
   const [filter, setFilter] = useState("All");

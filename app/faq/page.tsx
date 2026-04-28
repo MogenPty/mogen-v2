@@ -1,15 +1,36 @@
+import Link from "next/link";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
+import { faqs } from "@/data/faq";
+import { BASE_KEYWORDS } from "@/data/seo";
 import { createPageUrl } from "@/lib/utils";
 
-import { faqs } from "@/data/faq";
+export const metadata = {
+  title: "FAQ | MOGEN - Pretoria-Based Digital Innovation Agency",
+  description:
+    "Contact MOGEN for web development, digital marketing, and software solutions in South Africa.",
+  keywords: [
+    "faq",
+    "frequently asked questions",
+    "questions and answers",
+    "still have questions",
+    "help centre",
+    ...BASE_KEYWORDS,
+  ],
+  alternates: {
+    canonical: "/faq",
+  },
+  openGraph: {
+    url: "/faq",
+    type: "website",
+  },
+};
 
 export default function FAQ() {
   return (
@@ -18,7 +39,7 @@ export default function FAQ() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="bg-blue-600 text-white px-4 py-2 neo-brutalist-border neo-brutalist-shadow font-black text-sm inline-block transform -rotate-1 mb-6">
-            HELP CENTER
+            HELP CENTRE
           </div>
           <h1 className="text-5xl lg:text-7xl font-black mb-6">
             <span className="block transform rotate-1">QUESTIONS?</span>

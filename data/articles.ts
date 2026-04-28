@@ -1,11 +1,11 @@
 export interface Article {
   id?: string;
   title: string;
+  slug: string;
   content: string;
   excerpt: string;
   author: string;
   publishedAt: string;
-  slug?: string;
   tags?: string[];
   featuredImage?: string;
   status?: string;
@@ -16,6 +16,7 @@ export interface Article {
 export const sampleArticles: Article[] = [
   {
     title: "The Future of Web Development in South Africa",
+    slug: "the-future-of-web-development-in-south-africa",
     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -33,11 +34,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     tags: ["web development", "south africa", "technology"],
     featuredImage:
       "https://images.unsplash.com/photo-1585930437427-ac2efc8611a3?q=80&w=1170&auto=format&fit=crop",
-    category: "Tech",
+    category: "Technology",
     publishedAt: "2024-05-15T10:00:00Z",
+    status: "published",
   },
   {
     title: "Building Better Websites for Local Businesses",
+    slug: "building-better-websites-for-local-businesses",
     content: `Creating effective websites for local businesses requires understanding their unique needs and challenges.
 
 ## Understanding Local Business Needs
@@ -64,14 +67,16 @@ The key is to create websites that truly serve the local community while maintai
     excerpt:
       "A guide to creating effective websites that serve local business needs and connect with their communities.",
     author: "MOGEN Team",
-    tags: ["local business", "web design", "best practices"],
+    tags: ["local business", "design", "web design", "best practices"],
     featuredImage:
       "https://images.unsplash.com/photo-1740042270192-eba648e0e8e2?q=80&w=910&auto=format&fit=crop",
     category: "Design",
     publishedAt: "2024-06-01T10:00:00Z",
+    status: "published",
   },
   {
     title: "Why Every Maboloka Business Needs a Website",
+    slug: "why-every-maboloka-business-needs-a-website",
     content: `In today's digital age, having a website is no longer optional for businesses in Maboloka and surrounding areas.
 
 ## The Digital Shift
@@ -104,10 +109,17 @@ The investment in a professional website pays for itself through increased visib
     excerpt:
       "Understanding why local businesses in Maboloka need websites and how they can benefit from having an online presence.",
     author: "MOGEN Team",
-    tags: ["featured", "maboloka", "local business", "digital presence"],
+    tags: [
+      "featured",
+      "business",
+      "maboloka",
+      "local business",
+      "digital presence",
+    ],
     featuredImage:
       "https://images.unsplash.com/photo-1573167101669-476636b96cea?q=80&w=1469&auto=format&fit=crop",
     category: "Business",
     publishedAt: "2024-06-10T10:00:00Z",
+    status: "published",
   },
 ];
