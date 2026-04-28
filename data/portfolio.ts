@@ -14,6 +14,7 @@ export interface Project {
   gallery: string[];
   clientUrl?: string;
   liveUrl?: string;
+  tags?: string[];
 }
 
 const portfolioItems: Project[] = [
@@ -35,6 +36,16 @@ const portfolioItems: Project[] = [
       "Customer Testimonials",
       "Mobile Optimization",
     ],
+    tags: [
+      "molefe plumbing",
+      "plumbing website",
+      "whatsapp integration",
+      "customer testimonials",
+      "mobile optimisation",
+      "whatsapp booking",
+      "local trades",
+      "small business website",
+    ],
     technologies: ["React", "Tailwind CSS", "WhatsApp Business API"],
     timeline: "2 weeks",
     year: "2024",
@@ -49,7 +60,7 @@ const portfolioItems: Project[] = [
     id: 2,
     slug: "lotwo-ngo",
     title: "LOTWO (NGO)",
-    category: "Non-Profit",
+    category: "NGO",
     description:
       "Warm, inviting site with donation system and volunteer portal",
     image:

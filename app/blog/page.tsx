@@ -6,8 +6,33 @@ import FeaturedArticle from "@/components/blog/featured-article";
 import BlogHeader from "@/components/blog/header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { type Article, sampleArticles } from "@/data/articles";
+import { BASE_KEYWORDS } from "@/data/seo";
 import { list } from "@/lib/utils";
-import ArticleCard from "@/components/blog/article-card";
+
+export const metadata = {
+  title: "Blog",
+  description:
+    "Insights and expertise from MOGEN, a Pretoria-based digital innovation agency. Explore articles on web development, digital marketing, software solutions, and digital transformation for SMEs in South Africa.",
+  keywords: [
+    "blog",
+    "insights",
+    "expertise",
+    "articles",
+    "tips",
+    "updates",
+    "news",
+    "information",
+    "knowledge",
+    ...BASE_KEYWORDS,
+  ],
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    url: "/blog",
+    type: "website",
+  },
+};
 
 export default function Blog() {
   const [articles, setArticles] = useState<Article[]>([]);

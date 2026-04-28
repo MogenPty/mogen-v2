@@ -1,9 +1,30 @@
-"use client";
-
 import ContactForm from "@/components/contact/contact-form";
 import ContactInfo from "@/components/contact/contact-info";
 import FreeResources from "@/components/contact/free-resources";
 import ContactHeader from "@/components/contact/header";
+import { BASE_KEYWORDS } from "@/data/seo";
+
+export const metadata = {
+  title: "Contact | MOGEN - Pretoria-Based Digital Innovation Agency",
+  description:
+    "Contact MOGEN for web development, digital marketing, and software solutions in South Africa.",
+  keywords: [
+    "contact",
+    "call us",
+    "email us",
+    "get in touch",
+    "mogen contact",
+    "download free resources",
+    ...BASE_KEYWORDS,
+  ],
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    url: "/contact",
+    type: "website",
+  },
+};
 
 export default function Contact() {
   return (

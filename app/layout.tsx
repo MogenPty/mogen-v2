@@ -4,6 +4,8 @@ import { Oxanium } from "next/font/google";
 import SiteFooter from "@/components/shared/site-footer";
 import SiteHeader from "@/components/shared/site-header";
 import ScrollToTop from "@/components/shared/scroll-to-top";
+import { BASE_KEYWORDS } from "@/data/seo";
+
 import "./globals.css";
 
 const oxaniumSans = Oxanium({
@@ -12,43 +14,37 @@ const oxaniumSans = Oxanium({
 });
 
 export const metadata: Metadata = {
-  title:
-    "MOGEN | Transform Your Business With World-Class Web Design & AI Solutions",
+  title: {
+    default: "MOGEN | Web Development and Digital Innovation Agency",
+    template: "%s | MOGEN",
+  },
   description:
-    "MOGEN offers professional web design, development, and AI integration services. Based in Botswana, we help businesses build powerful digital presences with stunning websites and smart automation. View our portfolio and get a free consultation today.",
-  keywords:
-    "web design Botswana, MOGEN, AI solutions, website development, digital agency Gaborone, web developers Botswana, AI integration, ecommerce Botswana, software development",
-  authors: [{ name: "MOGEN Team" }],
+    "Full-stack web development, branding & digital marketing for South African businesses. Fast delivery, affordable pricing.",
+  keywords: BASE_KEYWORDS,
+  authors: [{ name: "MOGEN" }],
   creator: "MOGEN",
   publisher: "MOGEN",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   openGraph: {
-    title:
-      "MOGEN | Transform Your Business With World-Class Web Design & AI Solutions",
-    description:
-      "MOGEN offers professional web design, development, and AI integration services. Based in Botswana, we help businesses build powerful digital presences.",
-    url: "https://www.mogen.co.za",
+    url: process.env.NEXT_PUBLIC_SITE_URL!,
     siteName: "MOGEN",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "MOGEN - Professional Web Design & AI Solutions",
-      },
-    ],
-    locale: "en_US",
+    locale: "en_ZA",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "MOGEN | Transform Your Business With World-Class Web Design & AI Solutions",
-    description:
-      "MOGEN offers professional web design, development, and AI integration services. Based in Botswana, we help businesses build powerful digital presences.",
-    images: ["/images/og-image.jpg"],
+    site: "@MogenPty",
+    creator: "@MogenPty",
   },
   icons: {
     icon: "/favicon.ico",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_SITE_URL!,
   },
 };
 
