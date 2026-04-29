@@ -54,11 +54,11 @@ export default function FeaturedArticle() {
         {featuredArticle.featuredImage && (
           <div className="min-h-80 lg:min-h-0 order-1 lg:order-2">
             <Image
-              width={900}
-              height={400}
+              width={562}
+              height={492}
               src={featuredArticle.featuredImage}
               alt={featuredArticle.title}
-              loading="lazy"
+              loading="eager"
               className="w-full h-full object-cover neo-brutalist-border border-t-0 border-b-0 border-r-0"
             />
           </div>
