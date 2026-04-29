@@ -24,7 +24,7 @@ export default function PortfolioCard(props: Props) {
           className="w-full h-56 object-cover"
           width={500}
           height={500}
-          loading="eager"
+          loading="lazy"
         />
         <div
           className={`absolute top-4 right-4 ${category?.color ?? item.color} text-white px-3 py-1 neo-brutalist-border neo-brutalist-shadow-sm font-black text-xs`}
