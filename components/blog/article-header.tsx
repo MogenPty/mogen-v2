@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarIcon, UserIcon } from "@phosphor-icons/react";
+import { CalendarIcon, TagIcon, UserIcon } from "@phosphor-icons/react";
 
 import type { Article } from "@/data/articles";
 
@@ -22,6 +22,11 @@ export default function ArticleHeader({ article }: Props) {
         <span className="flex items-center gap-2">
           <CalendarIcon className="w-5 h-5 text-lime-500" />{" "}
           {new Date(article.publishedAt).toDateString()}
+        </span>
+      </div>
+      <div className="flex justify-center gap-4 text-sm font-bold text-gray-500 my-6">
+        <span className="flex items-center gap-1">
+          <TagIcon className="w-4 h-4" /> {article.tags?.join(", ")}
         </span>
       </div>
     </div>

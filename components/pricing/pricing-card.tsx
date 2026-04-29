@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { Package } from "@/data/pricing";
 import { createPageUrl } from "@/lib/utils";
+import ButtonColored from "../shared/button-colored";
 
 interface Props {
   pricingPackage: Package;
@@ -18,7 +19,7 @@ export default function PricingCard({ pricingPackage, cardIndex }: Props) {
       className={`relative bg-white p-8 m-4 md:mx-8 neo-brutalist-border neo-brutalist-shadow transform ${cardIndex % 2 === 0 ? "rotate-1" : "-rotate-1"} ${pricingPackage.popular ? "scale-105" : ""}`}
     >
       {pricingPackage.popular && (
-        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
           <div className="bg-orange-500 text-white px-4 py-2 neo-brutalist-border neo-brutalist-shadow font-black text-sm flex items-center gap-2">
             <StarIcon className="w-4 h-4" />
             POPULAR
@@ -27,9 +28,9 @@ export default function PricingCard({ pricingPackage, cardIndex }: Props) {
       )}
 
       <div
-        className={`${pricingPackage.color} w-16 h-16 mb-6 neo-brutalist-border neo-brutalist-shadow-sm flex items-center justify-center mx-auto`}
+        className={`${pricingPackage.backgroundColor} w-16 h-16 mb-6 ${pricingPackage.popular ? "mt-6" : ""} neo-brutalist-border neo-brutalist-shadow-sm flex items-center justify-center mx-auto`}
       >
-        <LightningIcon className="w-8 h-8 text-white" />
+        <LightningIcon className={`w-8 h-8 text-white`} />
       </div>
 
       <div className="text-center mb-6">
@@ -48,11 +49,13 @@ export default function PricingCard({ pricingPackage, cardIndex }: Props) {
       </ul>
 
       <Link href={createPageUrl("Contact")}>
-        <Button
-          className={`w-full ${pricingPackage.color} text-white font-black py-4 neo-brutalist-border neo-brutalist-shadow hover:opacity-90 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer`}
+        <ButtonColored
+          foreColor={pricingPackage.foreColor}
+          backgroundColor={pricingPackage.backgroundColor}
+          className="w-full"
         >
           CHOOSE {pricingPackage.name}
-        </Button>
+        </ButtonColored>
       </Link>
     </div>
   );

@@ -17,6 +17,38 @@ export interface Project {
   tags?: string[];
 }
 
+// const categories = ["All", "Local Business", "NGO", "Startup", "Professional"];
+const categories = [
+  {
+    name: "All",
+    color: "bg-white",
+  },
+  {
+    name: "FinTech",
+    color: "bg-emerald-600",
+  },
+  {
+    name: "Healthcare",
+    color: "bg-green-600",
+  },
+  {
+    name: "Local Business",
+    color: "bg-blue-600",
+  },
+  {
+    name: "NGO",
+    color: "bg-purple-500",
+  },
+  {
+    name: "Professional",
+    color: "bg-orange-500",
+  },
+  {
+    name: "Startup",
+    color: "bg-lime-400",
+  },
+];
+
 const portfolioItems: Project[] = [
   {
     id: 1,
@@ -58,8 +90,8 @@ const portfolioItems: Project[] = [
   },
   {
     id: 2,
-    slug: "lotwo-ngo",
-    title: "LOTWO (NGO)",
+    slug: "lighters-of-the-world",
+    title: "Lighters of the World",
     category: "NGO",
     description:
       "Warm, inviting site with donation system and volunteer portal",
@@ -67,7 +99,7 @@ const portfolioItems: Project[] = [
       "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop",
     color: "bg-purple-500",
     fullDescription:
-      "A heartwarming non-profit organization website that connects volunteers with meaningful opportunities and facilitates secure donations for community development projects.",
+      "A heartwarming non-profit organisation website that connects volunteers with meaningful opportunities and facilitates secure donations for community development projects.",
     scope: [
       "Website Design",
       "Donation System",
@@ -273,4 +305,4 @@ const portfolioItems: Project[] = [
   },
 ];
 
-export default portfolioItems;
+export { categories, portfolioItems };

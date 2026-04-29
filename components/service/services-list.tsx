@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { services } from "@/data/services";
 import ServiceIcon from "./service-icon";
+import ButtonColored from "../shared/button-colored";
 
 export default function ServicesList() {
   return (
@@ -23,9 +24,12 @@ export default function ServicesList() {
               <p className="text-gray-600 font-bold mb-6">
                 {service.description}
               </p>
-              <div
-                className={`w-full h-2 ${service.color} neo-brutalist-border-thin`}
-              ></div>
+              <ButtonColored
+                backgroundColor={service.color}
+                className="mt-4 w-full"
+              >
+                VIEW SERVICE
+              </ButtonColored>
             </div>
           </Link>
         );

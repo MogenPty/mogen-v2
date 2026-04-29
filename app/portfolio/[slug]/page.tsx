@@ -9,11 +9,15 @@ import ProjectInfo from "@/components/project/project-info";
 import BackLink from "@/components/shared/back-link";
 import Technologies from "@/components/shared/technologies";
 
-import portfolioItems from "@/data/portfolio";
+import { portfolioItems } from "@/data/portfolio";
 import { BASE_KEYWORDS } from "@/data/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  return portfolioItems.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {

@@ -68,8 +68,8 @@ export default function FAQ() {
                 {section.questions.map((item, idx) => (
                   <AccordionItem
                     value={`section-${index}-item-${idx}`}
-                    key={idx}
-                    className="neo-brutalist-border-thin mb-2 bg-gray-50 p-2"
+                    key={item.q}
+                    className="neo-brutalist-border-thin mb-2 bg-gray-50 p-2 border-b-2 last:border-b-2"
                   >
                     <AccordionTrigger className="text-left font-black text-lg hover:no-underline px-4 hover:cursor-pointer">
                       {item.q}

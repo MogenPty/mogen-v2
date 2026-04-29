@@ -1,15 +1,16 @@
 "use client";
 
-import {
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@radix-ui/react-select";
 import { useState } from "react";
 
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Select } from "../ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { Textarea } from "../ui/textarea";
 
 export default function ContactForm() {
@@ -123,10 +124,9 @@ export default function ContactForm() {
                 value={formData.service}
                 onValueChange={(value) => handleChange("service", value)}
               >
-                <SelectTrigger
-                  className="neo-brutalist-border font-bold"
-                  // placeholder="Select service"
-                ></SelectTrigger>
+                <SelectTrigger className="neo-brutalist-borde font-bold">
+                  <SelectValue placeholder="Select service" />
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="website">WEBSITE DEVELOPMENT</SelectItem>
                   <SelectItem value="branding">BRAND IDENTITY</SelectItem>
@@ -147,10 +147,9 @@ export default function ContactForm() {
               value={formData.budget}
               onValueChange={(value) => handleChange("budget", value)}
             >
-              <SelectTrigger
-                className="neo-brutalist-border font-bold"
-                // placeholder="Select budget"
-              ></SelectTrigger>
+              <SelectTrigger className="neo-brutalist-border font-bold">
+                <SelectValue placeholder="Select budget" />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="5000-10000">R5,000 - R10,000</SelectItem>
                 <SelectItem value="10000-20000">R10,000 - R20,000</SelectItem>

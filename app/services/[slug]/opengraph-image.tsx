@@ -27,8 +27,13 @@ const SERVICE_META: Record<
   },
 };
 
-export default function Image({ params }: { params: { slug: string } }) {
-  const meta = SERVICE_META[params.slug] ?? {
+interface Props {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function Image({ params }: Props) {
+  const { slug } = await params;
+  const meta = SERVICE_META[slug] ?? {
     label: "Our Services",
     icon: "💡",
     colour: "#000000",
