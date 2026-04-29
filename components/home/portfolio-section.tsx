@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HighlightedText from "@/components/shared/highlighted-text";
 import { Button } from "@/components/ui/button";
-import portfolioItems from "@/data/portfolio";
+import { portfolioItems } from "@/data/portfolio";
 import { createPageUrl } from "@/lib/utils";
 
 export default function PortfolioSection() {

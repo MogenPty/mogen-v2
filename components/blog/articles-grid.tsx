@@ -1,15 +1,42 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Article } from "@/data/articles";
+import { type Article, sampleArticles } from "@/data/articles";
+import { list } from "@/lib/utils";
 import ArticleCard from "./article-card";
 
-interface Props {
-  articles: Article[];
-  isLoading?: boolean;
-}
+export default function ArticlesGrid() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-export default function ArticlesGrid({ articles, isLoading = false }: Props) {
+  useEffect(() => {
+    const fetchArticles = () => {
+      setIsLoading(true);
+      const data = list(sampleArticles);
+      setArticles(data);
+
+      if (data.length > 0) {
+        const featuredArticles = data.filter((article) =>
+          article.tags?.includes("featured"),
+        );
+
+        let featuredArticle: Article;
+        if (featuredArticles.length > 0) {
+          featuredArticle = featuredArticles[0];
+        } else {
+          featuredArticle = data[0];
+        }
+
+        setArticles(
+          data.filter((article) => article.title !== featuredArticle?.title),
+        );
+      }
+      setIsLoading(false);
+    };
+    fetchArticles();
+  }, []);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
       {isLoading

@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+
 import ServiceDetails from "@/components/service/service-details";
 import ServiceHeader from "@/components/service/service-header";
 import BackLink from "@/components/shared/back-link";
 import Technologies from "@/components/shared/technologies";
-import { services } from "@/data/services";
+
 import {
   BASE_KEYWORDS,
-  SERVICE_KEYWORDS,
   SERVICE_DESCRIPTIONS,
+  SERVICE_KEYWORDS,
 } from "@/data/seo";
+import { services } from "@/data/services";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// app/services/[slug]/page.tsx
+export async function generateStaticParams() {
+  return services.map((s) => ({ slug: s.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

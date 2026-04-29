@@ -1,12 +1,48 @@
-import { redirect } from "next/navigation";
-import portfolioItems from "@/data/portfolio";
-import DrMahlanguShowcase from "@/components/showcase/dr-mahlangu";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import DrMahlanguShowcase from "@/components/showcase/dr-mahlangu";
 import DrNkosiShowcase from "@/components/showcase/dr-nkosi";
 import TownshipPayShowcase from "@/components/showcase/township-pay";
+import { portfolioItems } from "@/data/portfolio";
+import { BASE_KEYWORDS } from "@/data/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  return portfolioItems.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const project = portfolioItems.find((item) => item.slug === slug);
+
+  if (!project) return { title: "Project Not Found" };
+
+  return {
+    title: project.title,
+    description: project.fullDescription,
+    keywords: [
+      ...(project.tags ?? project.scope.map((f) => f.toLowerCase())),
+      ...project.technologies.map((t) => t.toLowerCase()), // "react", "tailwind css" etc.
+      project.category.toLowerCase(), // "local business", "non-profit" etc.
+      `${project.category.toLowerCase()} website south africa`,
+      `${project.category.toLowerCase()} web design`,
+      ...BASE_KEYWORDS,
+    ],
+    robots: {
+      index: false,
+      follow: true,
+    },
+    alternates: {
+      canonical: `/showcase/${project.slug}`,
+    },
+    openGraph: {
+      url: `/showcase/${project.slug}`,
+      type: "website",
+    },
+  };
 }
 
 export default async function Showcase({ params }: Props) {

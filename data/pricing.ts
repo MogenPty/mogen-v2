@@ -2,7 +2,8 @@ export interface Package {
   name: string;
   price: string;
   description: string;
-  color: string;
+  foreColor?: string;
+  backgroundColor?: string;
   popular: boolean;
   features: string[];
 }
@@ -12,7 +13,7 @@ const packages = [
     name: "STARTER",
     price: "R2,999",
     description: "Perfect for small businesses getting started online",
-    color: "bg-blue-600",
+    backgroundColor: "bg-blue-600",
     popular: false,
     features: [
       "5-page custom website",
@@ -26,7 +27,7 @@ const packages = [
     name: "PROFESSIONAL",
     price: "R8,999",
     description: "Most popular choice for growing businesses",
-    color: "bg-purple-500",
+    backgroundColor: "bg-purple-500",
     popular: true,
     features: [
       "10-page custom website",
@@ -41,7 +42,8 @@ const packages = [
     name: "PREMIUM",
     price: "R14,999",
     description: "Complete solution for established businesses",
-    color: "bg-lime-400",
+    foreColor: "text-black",
+    backgroundColor: "bg-lime-400",
     popular: false,
     features: [
       "Unlimited pages",

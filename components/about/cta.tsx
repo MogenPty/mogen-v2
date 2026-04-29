@@ -10,8 +10,8 @@ export default function AboutCTA() {
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-black mb-6">JOIN OUR MISSION</h2>
         <p className="text-xl font-bold text-gray-600 mb-8">
-          We&pos;re more than an agency; we&pos;re a partner in your success.
-          Let&pos;s work together to grow your business.
+          We&apos;re more than an agency; we&apos;re a partner in your success.
+          Let&apos;s work together to grow your business.
         </p>
         <Link href={createPageUrl("Contact")}>
           <Button className="bg-blue-600 text-white font-black text-lg px-8 py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">

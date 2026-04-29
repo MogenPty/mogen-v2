@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { Article } from "@/data/articles";
 import { createPageUrl, generateSlug } from "@/lib/utils";
+import { TagIcon } from "@phosphor-icons/react";
 
 interface Props {
   article: Article;
@@ -35,6 +36,11 @@ export default function ArticleCard({ article, index }: Props) {
           <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
         </div>
         <h3 className="text-2xl font-black mb-4 grow">{article.title}</h3>
+        <div className="flex items-center gap-4 text-sm font-bold text-gray-500 mb-6">
+          <span className="flex items-center gap-1">
+            <TagIcon className="w-4 h-4" /> {article.tags?.join(", ")}
+          </span>
+        </div>
         <p className="font-bold text-gray-600 mb-4">{article.excerpt}</p>
         <Link
           href={createPageUrl(`Blog/${generateSlug(article.title)}`)}
