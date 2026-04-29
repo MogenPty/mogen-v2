@@ -5,6 +5,7 @@ import DrNkosiShowcase from "@/components/showcase/dr-nkosi";
 import TownshipPayShowcase from "@/components/showcase/township-pay";
 import { portfolioItems } from "@/data/portfolio";
 import { BASE_KEYWORDS } from "@/data/seo";
+import { Suspense } from "react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -53,16 +54,21 @@ export default async function Showcase({ params }: Props) {
     redirect("/portfolio");
   }
 
+  let returnValue: React.ReactNode;
+
   switch (slug) {
     case "dr-mahlangu":
-      return <DrMahlanguShowcase />;
+      returnValue = <DrMahlanguShowcase />;
+      break;
     case "dr-nkosi-practice":
-      return <DrNkosiShowcase />;
+      returnValue = <DrNkosiShowcase />;
+      break;
     case "townshippay":
-      return <TownshipPayShowcase />;
+      returnValue = <TownshipPayShowcase />;
+      break;
     default:
       // Generic client showcase template for other clients
-      return (
+      returnValue = (
         <div className="min-h-screen bg-white">
           {/* Header */}
           <header className="bg-gray-900 text-white py-16">
@@ -142,4 +148,5 @@ export default async function Showcase({ params }: Props) {
         </div>
       );
   }
+  return <Suspense fallback={<div>Loading...</div>}>{returnValue}</Suspense>;
 }
