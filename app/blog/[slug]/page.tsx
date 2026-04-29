@@ -107,11 +107,12 @@ export default async function PortfolioDetail({ params }: Props) {
           {article.featuredImage && (
             <div className="mb-12 neo-brutalist-border neo-brutalist-shadow">
               <Image
-                width={900}
-                height={500}
+                width={824}
+                height={550}
                 src={article.featuredImage}
                 alt={article.title}
                 className="w-full h-auto object-cover"
+                loading="eager"
               />
             </div>
           )}

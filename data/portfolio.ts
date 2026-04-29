@@ -5,6 +5,7 @@ export interface Project {
   category: string;
   description: string;
   image: string;
+  thumbnail: string;
   color: string;
   fullDescription: string;
   scope: string[];
@@ -58,7 +59,9 @@ const portfolioItems: Project[] = [
     description:
       "Modern website with WhatsApp booking and customer testimonials",
     image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=366&h=224&fit=crop",
     color: "bg-blue-600",
     fullDescription:
       "A comprehensive plumbing services website designed to showcase professional expertise and make it easy for customers to book appointments through WhatsApp integration.",
@@ -84,8 +87,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://example.com/molefe-plumbing",
     // clientUrl: "/showcase/molefe-plumbing",
     gallery: [
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1581094271901-734744ca2ca2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1581094271901-734744ca2ca2?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -96,7 +99,9 @@ const portfolioItems: Project[] = [
     description:
       "Warm, inviting site with donation system and volunteer portal",
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=366&h=224&fit=crop",
     color: "bg-purple-500",
     fullDescription:
       "A heartwarming non-profit organisation website that connects volunteers with meaningful opportunities and facilitates secure donations for community development projects.",
@@ -112,8 +117,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://example.com/lotwo",
     // clientUrl: "/showcase/lotwo",
     gallery: [
-      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -124,7 +129,9 @@ const portfolioItems: Project[] = [
     description:
       "Bold landing page with lead capture and analytics integration",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=366&h=224&fit=crop",
     color: "bg-lime-400",
     fullDescription:
       "A cutting-edge startup landing page designed to capture leads and showcase innovative technology solutions with integrated analytics for conversion tracking.",
@@ -145,8 +152,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://example.com/techstart",
     // clientUrl: "/clients/techstart-sa",
     gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -157,7 +164,9 @@ const portfolioItems: Project[] = [
     description:
       "Professional medical practice website with appointment booking",
     image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=366&h=224&fit=crop",
     color: "bg-green-600",
     fullDescription:
       "A sophisticated medical practice website that builds trust with patients through professional design, easy appointment booking, and comprehensive service information.",
@@ -173,8 +182,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://example.com/dr-mahlangu",
     clientUrl: "/showcase/dr-mahlangu",
     gallery: [
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -185,7 +194,9 @@ const portfolioItems: Project[] = [
     description:
       "Calm, professional site with an easy-to-use appointment request form",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=366&h=224&fit=crop",
     color: "bg-orange-500",
     fullDescription:
       "A serene and professional medical practice website designed to instill confidence in patients while making appointment scheduling seamless and stress-free.",
@@ -201,8 +212,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://example.com/dr-nkosi",
     clientUrl: "/showcase/dr-nkosi-practice",
     gallery: [
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1559757594-17eb7d5a6633?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1559757594-17eb7d5a6633?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -212,7 +223,9 @@ const portfolioItems: Project[] = [
     category: "Local Business",
     description: "Vibrant food delivery landing page with online ordering",
     image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=366&h=224&fit=crop",
     color: "bg-purple-500",
     fullDescription:
       "A colorful and appetizing food delivery platform that makes ordering local favorites easy and enjoyable, featuring vibrant imagery and smooth user experience.",
@@ -233,8 +246,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://example.com/nix-mapha-eats",
     // clientUrl: "/clients/nix-mapha-eats",
     gallery: [
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -245,7 +258,9 @@ const portfolioItems: Project[] = [
     description:
       "An educational platform for young developers in the community",
     image:
-      "https://images.unsplash.com/photo-1550439062-609e1531270e?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1550439062-609e1531270e?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1550439062-609e1531270e?w=366&h=224&fit=crop",
     color: "bg-blue-600",
     fullDescription:
       "An inspiring educational platform dedicated to empowering young developers in underserved communities with coding skills, mentorship, and career opportunities.",
@@ -266,8 +281,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://futurecoders.org",
     // clientUrl: "/clients/future-coders",
     gallery: [
-      "https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1550439062-609e1531270e?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -277,7 +292,9 @@ const portfolioItems: Project[] = [
     category: "FinTech",
     description: "Secure digital payment platform for township businesses",
     image:
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=747&h=457&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=366&h=224&fit=crop",
     color: "bg-emerald-600",
     fullDescription:
       "A revolutionary fintech platform that brings secure digital payments to township businesses, enabling cashless transactions and financial inclusion for underserved communities.",
@@ -299,8 +316,8 @@ const portfolioItems: Project[] = [
     // liveUrl: "https://townshippay.co.za",
     clientUrl: "/showcase/townshippay",
     gallery: [
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=341&h=184&fit=crop",
     ],
   },
 ];

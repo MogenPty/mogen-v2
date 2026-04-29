@@ -18,11 +18,11 @@ export default function ArticleCard({ article, index }: Props) {
       key={article.id}
       className={`bg-white neo-brutalist-border neo-brutalist-shadow transform ${index % 2 === 0 ? "rotate-1" : "-rotate-1"} hover:scale-105 transition-all duration-300 overflow-hidden flex flex-col`}
     >
-      {article.featuredImage && (
+      {article.articleImage && (
         <Image
-          width={500}
-          height={400}
-          src={article.featuredImage}
+          width={365}
+          height={192}
+          src={article.articleImage}
           alt={article.title}
           className="w-full h-48 object-cover"
           loading="eager"
@@ -33,7 +33,7 @@ export default function ArticleCard({ article, index }: Props) {
           <span className="bg-blue-100 text-blue-600 px-2 py-1 neo-brutalist-border-thin">
             {article.category}
           </span>
-          <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+          <span>{new Date(article.publishedAt).toDateString()}</span>
         </div>
         <h3 className="text-2xl font-black mb-4 grow">{article.title}</h3>
         <div className="flex items-center gap-4 text-sm font-bold text-gray-500 mb-6">
@@ -43,7 +43,9 @@ export default function ArticleCard({ article, index }: Props) {
         </div>
         <p className="font-bold text-gray-600 mb-4">{article.excerpt}</p>
         <Link
-          href={createPageUrl(`Blog/${generateSlug(article.title)}`)}
+          href={createPageUrl(
+            `Blog/${article.slug ?? generateSlug(article.title)}`,
+          )}
           className="mt-auto"
         >
           <Button

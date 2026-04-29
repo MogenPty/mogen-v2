@@ -16,8 +16,8 @@ export const services = [
     ],
     image: "",
     gallery: [
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1581094271901-734744ca2ca2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1581094271901-734744ca2ca2?w=341&h=184&fit=crop",
     ],
   },
   {
@@ -32,8 +32,8 @@ export const services = [
     technologies: ["Flutter", "React Native"],
     image: "",
     gallery: [
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1581094271901-734744ca2ca2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=341&h=184&fit=crop",
+      "https://images.unsplash.com/photo-1581094271901-734744ca2ca2?w=341&h=184&fit=crop",
     ],
   },
   {

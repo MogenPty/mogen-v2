@@ -8,6 +8,7 @@ export interface Article {
   publishedAt: string;
   tags?: string[];
   featuredImage?: string;
+  articleImage?: string;
   status?: string;
   category?: string;
 }
@@ -33,7 +34,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     author: "MOGEN Team",
     tags: ["web development", "south africa", "technology"],
     featuredImage:
-      "https://images.unsplash.com/photo-1585930437427-ac2efc8611a3?q=80&w=1170&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585930437427-ac2efc8611a3?q=80&w=824&h=550&auto=format&fit=crop",
+    articleImage:
+      "https://images.unsplash.com/photo-1585930437427-ac2efc8611a3?q=80&w=365&h=192&auto=format&fit=crop",
     category: "Technology",
     publishedAt: "2024-05-15T10:00:00Z",
     status: "published",
@@ -69,7 +72,9 @@ The key is to create websites that truly serve the local community while maintai
     author: "MOGEN Team",
     tags: ["local business", "design", "web design", "best practices"],
     featuredImage:
-      "https://images.unsplash.com/photo-1740042270192-eba648e0e8e2?q=80&w=910&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1740042270192-eba648e0e8e2?q=80&w=824&h=550&auto=format&fit=crop",
+    articleImage:
+      "https://images.unsplash.com/photo-1740042270192-eba648e0e8e2?q=80&w=365&h=192&auto=format&fit=crop",
     category: "Design",
     publishedAt: "2024-06-01T10:00:00Z",
     status: "published",
@@ -117,7 +122,9 @@ The investment in a professional website pays for itself through increased visib
       "digital presence",
     ],
     featuredImage:
-      "https://images.unsplash.com/photo-1573167101669-476636b96cea?q=80&w=1469&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1573167101669-476636b96cea?q=80&w=824&h=550&auto=format&fit=crop",
+    articleImage:
+      "https://images.unsplash.com/photo-1573167101669-476636b96cea?q=80&w=365&h=192&auto=format&fit=crop",
     category: "Business",
     publishedAt: "2024-06-10T10:00:00Z",
     status: "published",
