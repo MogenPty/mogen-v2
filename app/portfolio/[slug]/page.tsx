@@ -10,7 +10,6 @@ import BackLink from "@/components/shared/back-link";
 import Technologies from "@/components/shared/technologies";
 
 import { portfolioItems } from "@/data/portfolio";
-import { BASE_KEYWORDS } from "@/data/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;

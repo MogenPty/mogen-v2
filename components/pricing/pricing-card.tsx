@@ -2,7 +2,6 @@
 
 import { CheckIcon, LightningIcon, StarIcon } from "@phosphor-icons/react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import type { Package } from "@/data/pricing";
 import { createPageUrl } from "@/lib/utils";
 import ButtonColored from "../shared/button-colored";
