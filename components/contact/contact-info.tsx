@@ -66,10 +66,10 @@ export default function ContactInfo(props: Props) {
           <MapPinIcon className="w-6 h-6 text-blue-400 mt-1" />
           <div>
             <div className="font-black text-lg">LOCATIONS</div>
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-4 md:gap-12">
               <div className="flex flex-col">
                 <div className="text-gray-300">
-                  Tambo Section
+                  Tambo Section,
                   <br />
                   Maboloka, 0197
                   <br />

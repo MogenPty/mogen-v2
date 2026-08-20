@@ -2,7 +2,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "MOGEN Pricing — Websites from R2,999";
+export const alt = "Mogen Pty Ltd Pricing — Websites from R2,999";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -114,7 +114,7 @@ export default function Image() {
           letterSpacing: "3px",
         }}
       >
-        MOGEN
+        Mogen Pty Ltd
       </div>
     </div>,
     { ...size },

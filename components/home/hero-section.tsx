@@ -29,10 +29,10 @@ export default function HeroSection() {
 
             <h1 className="text-5xl lg:text-7xl font-black leading-tight">
               <span className="flex flex-row">
-                <span className="block transform -rotate-1 pr-4">BOLD</span>
+                <span className="block transform -rotate-1 pr-4">BOLD</span>{" "}
                 <span className="block text-purple-500 transform rotate-1">
                   WEB
-                </span>
+                </span>{" "}
               </span>
               <span className="block text-blue-600 transform -rotate-1">
                 SOLUTIONS

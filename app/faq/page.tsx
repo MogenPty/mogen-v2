@@ -8,21 +8,12 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { faqs } from "@/data/faq";
-import { BASE_KEYWORDS } from "@/data/seo";
 import { createPageUrl } from "@/lib/utils";
 
 export const metadata = {
-  title: "FAQ | MOGEN - Pretoria-Based Digital Innovation Agency",
+  title: "Website Development FAQs — Cost & Timelines",
   description:
-    "Contact MOGEN for web development, digital marketing, and software solutions in South Africa.",
-  keywords: [
-    "faq",
-    "frequently asked questions",
-    "questions and answers",
-    "still have questions",
-    "help centre",
-    ...BASE_KEYWORDS,
-  ],
+    "Questions we usually get asked and how we respond as MOGEN Pty Ltd.",
   alternates: {
     canonical: "/faq",
   },
@@ -42,10 +33,10 @@ export default function FAQ() {
             HELP CENTRE
           </div>
           <h1 className="text-5xl lg:text-7xl font-black mb-6">
-            <span className="block transform rotate-1">QUESTIONS?</span>
+            <span className="block transform rotate-1">QUESTIONS?</span>{" "}
             <span className="block text-purple-500 transform -rotate-1">
               WE HAVE
-            </span>
+            </span>{" "}
             <span className="block text-lime-500 transform rotate-1">
               ANSWERS.
             </span>
