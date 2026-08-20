@@ -14,6 +14,8 @@ const oxaniumSans = Oxanium({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mogen.co.za";
+
 export const metadata: Metadata = {
   title: {
     default: "Web Development and Digital Innovation Agency | Mogen Pty Ltd",
@@ -24,9 +26,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Mogen Pty Ltd" }],
   creator: "Mogen Pty Ltd",
   publisher: "Mogen Pty Ltd",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  metadataBase: new URL(siteUrl),
   openGraph: {
-    url: process.env.NEXT_PUBLIC_SITE_URL!,
+    url: siteUrl,
     siteName: "MOGEN",
     locale: "en_ZA",
     type: "website",
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL!,
+    canonical: siteUrl,
   },
 };
 

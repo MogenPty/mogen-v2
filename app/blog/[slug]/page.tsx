@@ -8,7 +8,6 @@ import ArticleHeader from "@/components/blog/article-header";
 import BlogBackLink from "@/components/blog/blog-back-link";
 import CTASection from "@/components/home/cta-section";
 import { sampleArticles } from "@/data/articles";
-import { BASE_KEYWORDS } from "@/data/seo";
 import { generateSlug, list } from "@/lib/utils";
 
 // import { Skeleton } from "@/components/ui/skeleton";

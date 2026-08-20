@@ -31,7 +31,6 @@ export default function DrMahlanguShowcase() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [formStatus, setFormStatus] = useState("");
   const [openFAQs, setOpenFAQs] = useState(new Set<number>());
 
