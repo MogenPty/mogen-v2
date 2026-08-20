@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import PortfolioCTA from "@/components/portfolio/cta-section";
 
@@ -20,23 +20,21 @@ export async function generateStaticParams() {
   return portfolioItems.map((p) => ({ slug: p.slug }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const project = portfolioItems.find((item) => item.slug === slug);
 
-  if (!project) return { title: "Project Not Found" };
+  if (!project)
+    return {
+      title: "Project Not Found",
+      robots: { index: false, follow: false },
+    };
 
   return {
     title: project.title,
     description: project.fullDescription,
-    keywords: [
-      ...(project.tags ?? project.scope.map((f) => f.toLowerCase())),
-      ...project.technologies.map((t) => t.toLowerCase()), // "react", "tailwind css" etc.
-      project.category.toLowerCase(), // "local business", "non-profit" etc.
-      `${project.category.toLowerCase()} website south africa`,
-      `${project.category.toLowerCase()} web design`,
-      ...BASE_KEYWORDS,
-    ],
     alternates: {
       canonical: `/portfolio/${project.slug}`,
     },
@@ -52,7 +50,7 @@ export default async function PortfolioDetail({ params }: Props) {
   const project = portfolioItems.find((item) => item.slug === slug);
 
   if (!project) {
-    redirect("/portfolio");
+    notFound();
   }
 
   return (

@@ -21,41 +21,53 @@ export default function ContactForm() {
     service: "",
     budget: "",
     message: "",
+    sendCopy: false,
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
+    setIsSubmitting(true);
+    setError(null);
 
-    // Get the form data and post it to https://formsubmit.co/7829abfb5658f9588ec16362d99a9cfc
-    const formData = new FormData(e.target);
-    fetch("https://formsubmit.co/7829abfb5658f9588ec16362d99a9cfc", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          setIsSubmitted(true);
-          setTimeout(() => setIsSubmitted(false), 5000);
-          setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            service: "",
-            budget: "",
-            message: "",
-          });
-        } else {
-          console.error("Form submission failed");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contact", ...formData }),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 5000);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        budget: "",
+        message: "",
+        sendCopy: false,
+      });
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -72,6 +84,12 @@ export default function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="bg-red-100 text-red-700 p-4 neo-brutalist-border font-bold">
+              {error}
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="name" className="block font-black mb-2">
@@ -174,11 +192,25 @@ export default function ContactForm() {
             />
           </div>
 
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id={"sendCopy"}
+              checked={formData.sendCopy}
+              onChange={(e) => handleChange("sendCopy", e.target.checked)}
+              className="w-5 h-5 accent-purple-500 cursor-pointer"
+            />
+            <label htmlFor="sendCopy" className="font-bold cursor-pointer">
+              Send me a copy of this email
+            </label>
+          </div>
+
           <Button
             type="submit"
-            className="w-full bg-purple-500 text-white font-black text-lg py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-purple-600 transform hover:scale-105 transition-all duration-200"
+            disabled={isSubmitting}
+            className="w-full bg-purple-500 text-white font-black text-lg py-4 neo-brutalist-border neo-brutalist-shadow hover:bg-purple-600 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
-            SEND MESSAGE & GET QUOTE
+            {isSubmitting ? "SENDING..." : "SEND MESSAGE & GET QUOTE"}
           </Button>
         </form>
       )}

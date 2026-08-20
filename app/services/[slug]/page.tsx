@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import ServiceDetails from "@/components/service/service-details";
 import ServiceHeader from "@/components/service/service-header";
 import BackLink from "@/components/shared/back-link";
 import Technologies from "@/components/shared/technologies";
 
-import {
-  BASE_KEYWORDS,
-  SERVICE_DESCRIPTIONS,
-  SERVICE_KEYWORDS,
-} from "@/data/seo";
+import { SERVICE_DESCRIPTIONS } from "@/data/seo";
 import { services } from "@/data/services";
 
 interface Props {
@@ -21,16 +17,25 @@ export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
 
-  if (!service) return { title: "Service Not Found" };
+  if (!service)
+    return {
+      title: "Service Not Found",
+      description: "No requested service cannot be found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
 
   return {
-    title: service.title,
+    title: service.seoTitle ?? service.title,
     description: SERVICE_DESCRIPTIONS[service.slug] ?? service.description,
-    keywords: [...(SERVICE_KEYWORDS[service.slug] ?? []), ...BASE_KEYWORDS],
     alternates: {
       canonical: `/services/${service.slug}`,
     },
@@ -46,7 +51,7 @@ export default async function Service({ params }: Props) {
   const service = services.find((item) => item.slug === slug);
 
   if (!service) {
-    redirect("/services");
+    notFound();
   }
 
   return (

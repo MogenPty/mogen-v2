@@ -1,24 +1,12 @@
 import ArticlesGrid from "@/components/blog/articles-grid";
 import FeaturedArticle from "@/components/blog/featured-article";
 import BlogHeader from "@/components/blog/header";
-import { BASE_KEYWORDS } from "@/data/seo";
 
 export const metadata = {
-  title: "Blog",
+  title: "Web & Digital Insights for SA Businesses",
   description:
     "Insights and expertise from MOGEN, a Pretoria-based digital innovation agency. Explore articles on web development, digital marketing, software solutions, and digital transformation for SMEs in South Africa.",
-  keywords: [
-    "blog",
-    "insights",
-    "expertise",
-    "articles",
-    "tips",
-    "updates",
-    "news",
-    "information",
-    "knowledge",
-    ...BASE_KEYWORDS,
-  ],
+
   alternates: {
     canonical: "/blog",
   },

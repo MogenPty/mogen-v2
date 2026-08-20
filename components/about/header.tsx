@@ -9,10 +9,10 @@ export default function AboutHeader() {
         OUR STORY
       </div>
       <h1 className="text-5xl lg:text-7xl font-black mb-6">
-        <span className="block transform -rotate-1">YOUR LOCAL</span>
+        <span className="block transform -rotate-1">YOUR LOCAL</span>{" "}
         <span className="block text-purple-500 transform rotate-1">
           DIGITAL
-        </span>
+        </span>{" "}
         <span className="block text-lime-500 transform -rotate-1">
           PARTNERS
         </span>

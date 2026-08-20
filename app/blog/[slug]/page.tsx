@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Markdown from "react-markdown";
 
 import ArticleHeader from "@/components/blog/article-header";
-import ArticleNotFound from "@/components/blog/article-not-found";
+// import ArticleNotFound from "@/components/blog/article-not-found";
 import BlogBackLink from "@/components/blog/blog-back-link";
 import CTASection from "@/components/home/cta-section";
 import { sampleArticles } from "@/data/articles";
@@ -31,6 +32,8 @@ const getArticleBySlug = async (slug: string) => {
   return article;
 };
 
+export const dynamicParams = false;
+
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
@@ -41,22 +44,20 @@ export const generateMetadata = async ({
     return {
       title: "Article Not Found",
       description: "The requested article could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
   return {
     title: article.title,
     description: article.excerpt,
-    keywords: [
-      ...(article.tags ?? []).map((tag) => tag.toLowerCase()),
-      ...(article.category ?? "").toLowerCase(),
-      ...article.title.toLowerCase().split(" "),
-      ...BASE_KEYWORDS,
-    ],
     alternates: {
       canonical: `/blog/${slug}`,
     },
-    authors: [{ name: article.author }, { name: "MOGEN" }],
+    authors: [{ name: article.author }],
     openGraph: {
       url: `/blog/${slug}`,
       type: "article",
@@ -77,7 +78,7 @@ export default async function PortfolioDetail({ params }: Props) {
   const article = await getArticleBySlug(slug);
 
   if (!article) {
-    return <ArticleNotFound />;
+    notFound();
   }
 
   //   if (isLoading) {

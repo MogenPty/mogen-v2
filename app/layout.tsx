@@ -2,11 +2,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Oxanium } from "next/font/google";
-
+import ScrollToTop from "@/components/shared/scroll-to-top";
 import SiteFooter from "@/components/shared/site-footer";
 import SiteHeader from "@/components/shared/site-header";
-import ScrollToTop from "@/components/shared/scroll-to-top";
-import { BASE_KEYWORDS } from "@/data/seo";
+import { jsonLd } from "@/data/json-ld";
 
 import "./globals.css";
 
@@ -17,15 +16,14 @@ const oxaniumSans = Oxanium({
 
 export const metadata: Metadata = {
   title: {
-    default: "MOGEN | Web Development and Digital Innovation Agency",
-    template: "%s | MOGEN",
+    default: "Web Development and Digital Innovation Agency | Mogen Pty Ltd",
+    template: "%s | Mogen Pty Ltd",
   },
   description:
     "Full-stack web development, branding & digital marketing for South African businesses. Fast delivery, affordable pricing.",
-  keywords: BASE_KEYWORDS,
-  authors: [{ name: "MOGEN" }],
-  creator: "MOGEN",
-  publisher: "MOGEN",
+  authors: [{ name: "Mogen Pty Ltd" }],
+  creator: "Mogen Pty Ltd",
+  publisher: "Mogen Pty Ltd",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   openGraph: {
     url: process.env.NEXT_PUBLIC_SITE_URL!,
@@ -57,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-ZA"
       className={`${oxaniumSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
@@ -71,6 +69,13 @@ export default function RootLayout({
 
         {/* Footer */}
         <SiteFooter />
+
+        {/* JSON-LD */}
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Needed for the JSON-LD
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
         {/* Vercel */}
         <Analytics />

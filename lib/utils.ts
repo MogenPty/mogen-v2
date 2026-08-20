@@ -48,8 +48,6 @@ export function getReadingTime(content: string) {
 }
 
 export function list(articles: Article[]) {
-  // For now, just return sampleArticles sorted by publishedAt (descending)
-
   return articles.sort(
     (a, b) =>
       dateStringToEpoch(a.publishedAt) - dateStringToEpoch(b.publishedAt),

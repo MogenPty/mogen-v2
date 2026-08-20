@@ -78,7 +78,7 @@ export default async function Image({ params }: Props) {
           letterSpacing: "3px",
         }}
       >
-        MOGEN
+        Mogen Pty Ltd
       </div>
     </div>,
     { ...size },

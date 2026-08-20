@@ -2,7 +2,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "MOGEN | Bold Web Solutions";
+export const alt = "MOGEN Pty Ltd | Bold Web Solutions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,13 +29,13 @@ export default function Image() {
           letterSpacing: "-2px",
         }}
       >
-        MOGEN
+        MOGEN Pty Ltd
       </div>
       <div style={{ fontSize: 28, color: "#aaaaaa", marginTop: 16 }}>
         Bold Web Solutions
       </div>
       <div style={{ fontSize: 20, color: "#666666", marginTop: 12 }}>
-        web development · branding · digital marketing
+        web development · seo · branding · digital marketing
       </div>
     </div>,
     { ...size },

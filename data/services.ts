@@ -4,6 +4,7 @@ export const services = [
     title: "WEB DEVELOPMENT",
     slug: "web-development",
     category: "Development",
+    seoTitle: "Website Development from R2,999",
     description:
       "Custom websites that work perfectly on all devices. Fast, secure, and built to convert visitors into customers.",
     color: "bg-blue-600",
@@ -25,8 +26,9 @@ export const services = [
     title: "MOBILE DEVELOPMENT",
     slug: "mobile-development",
     category: "Development",
+    seoTitle: "Mobile App Development South Africa",
     description:
-      "Custom websites that work perfectly on all devices. Fast, secure, and built to convert visitors into customers.",
+      "Custom mobile apps that work perfectly on all devices. Fast, secure, and built to feel native on any mobile device.",
     color: "bg-orange-500",
     borderColor: "border-orange-500",
     technologies: ["Flutter", "React Native"],
@@ -41,6 +43,7 @@ export const services = [
     title: "BRAND IDENTITY",
     slug: "brand-identity",
     category: "Branding",
+    seoTitle: "Logo & Brand Identity Design",
     description:
       "Logos, colors, and visual systems that make your business unforgettable. Stand out from the competition.",
     color: "bg-purple-500",
@@ -52,6 +55,7 @@ export const services = [
     title: "DIGITAL MARKETING",
     slug: "digital-marketing",
     category: "Marketing",
+    seoTitle: "Digital Marketing & SEO Services",
     description:
       "Get found online with SEO, social media, and content that actually brings in new customers.",
     color: "bg-lime-400",

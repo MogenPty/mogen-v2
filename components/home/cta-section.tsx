@@ -13,8 +13,9 @@ import { createPageUrl } from "@/lib/utils";
 export default function CTASection() {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  // Track mounted state to prevent setState after unmount
   const mountedRef = useRef(true);
 
   useEffect(() => {
@@ -27,19 +28,41 @@ export default function CTASection() {
     };
   }, []);
 
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle newsletter signup logic here
-    setIsSubscribed(true);
-    setEmail("");
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    timeoutRef.current = setTimeout(() => {
-      if (mountedRef.current) {
-        setIsSubscribed(false);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "newsletter", email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to subscribe");
       }
-    }, 3000);
+
+      setIsSubscribed(true);
+      setEmail("");
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        if (mountedRef.current) {
+          setIsSubscribed(false);
+        }
+      }, 3000);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,12 +115,12 @@ export default function CTASection() {
                     THANKS FOR SUBSCRIBING! ✨
                   </div>
                 ) : (
-                  <form
-                    action="https://formsubmit.co/info@mogen.co.za"
-                    method="POST"
-                    className="flex gap-2"
-                    onSubmit={handleSubscribe}
-                  >
+                  <form onSubmit={handleSubscribe} className="flex gap-2">
+                    {error && (
+                      <p className="text-red-600 font-bold text-sm w-full mb-2">
+                        {error}
+                      </p>
+                    )}
                     <Input
                       name="email"
                       type="email"
@@ -109,9 +132,10 @@ export default function CTASection() {
                     />
                     <Button
                       type="submit"
-                      className="bg-lime-400 text-black font-black neo-brutalist-border neo-brutalist-shadow-sm hover:cursor-pointer"
+                      disabled={isSubmitting}
+                      className="bg-lime-400 text-black font-black neo-brutalist-border neo-brutalist-shadow-sm hover:cursor-pointer disabled:opacity-50"
                     >
-                      GO!
+                      {isSubmitting ? "..." : "GO!"}
                     </Button>
                   </form>
                 )}
