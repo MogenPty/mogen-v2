@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   openGraph: {
     url: siteUrl,
-    siteName: "MOGEN",
+    siteName: "Mogen Pty Ltd",
     locale: "en_ZA",
     type: "website",
   },

@@ -16,3 +16,5 @@ const eslintConfig = defineConfig([
 ]);
 
 export default eslintConfig;
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="44d5bed5-65a8-5d28-8af3-e17f3b16a1c7")}catch(e){}}();
+//# debugId=44d5bed5-65a8-5d28-8af3-e17f3b16a1c7
