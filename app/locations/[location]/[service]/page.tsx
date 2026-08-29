@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import BackLink from "@/components/shared/back-link";
 import ServiceDetails from "@/components/service/service-details";
+import BackLink from "@/components/shared/back-link";
 import Technologies from "@/components/shared/technologies";
 import { getLocation, getLocationServiceCombos } from "@/data/locations";
+import {
+  SERVICE_DESCRIPTIONS,
+  SERVICE_DESCRIPTIONS_TEMPLATE,
+} from "@/data/seo";
 import { services } from "@/data/services";
-import { SERVICE_DESCRIPTIONS } from "@/data/seo";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mogen.co.za";
 
@@ -33,15 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${svc.title} in ${loc.displayName} | ${loc.name} | Mogen`;
   const description =
-    loc.slug === "maboloka" && svc.slug === "seo"
-      ? `Local SEO for Maboloka businesses. Google Business Profile + on-page SEO from Tambo Section. Free quote in 24 hours.`
-      : loc.slug === "soshanguve" && svc.slug === "seo"
-        ? `SEO for Soshanguve businesses. Get found on Google from Block Y. Local SEO from R2,000.`
-        : `${svc.description} Tailored for ${loc.displayName} — ${loc.streetAddress}, ${loc.postalCode}. Packages from R2,999.`;
+    SERVICE_DESCRIPTIONS_TEMPLATE[svc.slug]?.replaceAll(
+      "{{location}}",
+      loc.displayName,
+    ) ?? SERVICE_DESCRIPTIONS[svc.slug];
 
   return {
     title,
-    description: SERVICE_DESCRIPTIONS[svc.slug] ?? description,
+    description,
     alternates: { canonical: `/locations/${loc.slug}/${svc.slug}` },
     openGraph: {
       url: `/locations/${loc.slug}/${svc.slug}`,
@@ -49,11 +51,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
     },
-    keywords: [`${svc.title.toLowerCase()} ${loc.name}`, `${svc.slug} ${loc.name}`, `mogen ${loc.name}`],
+    keywords: [
+      `${svc.title.toLowerCase()} ${loc.name}`,
+      `${svc.slug} ${loc.name}`,
+      `mogen ${loc.name}`,
+    ],
   };
 }
 
-export default async function LocationService({ params }: Props) {
+export default async function LocationService({ params }: Readonly<Props>) {
   const { location: locSlug, service: svcSlug } = await params;
   const loc = getLocation(locSlug);
   const svc = services.find((s) => s.slug === svcSlug);
@@ -71,8 +77,18 @@ export default async function LocationService({ params }: Props) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-      { "@type": "ListItem", position: 2, name: "Locations", item: `${BASE}/locations` },
-      { "@type": "ListItem", position: 3, name: loc.displayName, item: `${BASE}/locations/${loc.slug}` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Locations",
+        item: `${BASE}/locations`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: loc.displayName,
+        item: `${BASE}/locations/${loc.slug}`,
+      },
       {
         "@type": "ListItem",
         position: 4,
@@ -87,7 +103,11 @@ export default async function LocationService({ params }: Props) {
     "@type": "Service",
     name: `${svc.title} in ${loc.displayName}`,
     serviceType: svc.title,
-    provider: { "@type": "ProfessionalService", name: "Mogen Pty Ltd", url: BASE },
+    provider: {
+      "@type": "ProfessionalService",
+      name: "Mogen Pty Ltd",
+      url: BASE,
+    },
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
@@ -120,23 +140,34 @@ export default async function LocationService({ params }: Props) {
     };
   }
 
-  const otherServices = services.filter((s) => loc.services.includes(s.slug) && s.slug !== svc.slug);
+  const otherServices = services.filter(
+    (s) => loc.services.includes(s.slug) && s.slug !== svc.slug,
+  );
 
   return (
     <div className="py-20 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <BackLink text={`Back to ${loc.displayName}`} link={`/locations/${loc.slug}`} />
+        <BackLink
+          text={`Back to ${loc.displayName}`}
+          link={`/locations/${loc.slug}`}
+        />
 
         {/* Header */}
         <div className="text-center mb-12">
-          <div className={`${svc.color} text-white px-4 py-2 neo-brutalist-border neo-brutalist-shadow font-black text-sm inline-block transform -rotate-1 mb-6`}>
+          <div
+            className={`${svc.color} text-white px-4 py-2 neo-brutalist-border neo-brutalist-shadow font-black text-sm inline-block transform -rotate-1 mb-6`}
+          >
             {svc.category?.toUpperCase()} · {loc.displayName.toUpperCase()}
           </div>
           <h1 className="text-5xl lg:text-6xl font-black mb-4">
             <span className="block transform -rotate-1">{svc.title}</span>
-            <span className="block text-purple-500 text-3xl lg:text-4xl mt-2">IN {loc.displayName.toUpperCase()}</span>
+            <span className="block text-purple-500 text-3xl lg:text-4xl mt-2">
+              IN {loc.displayName.toUpperCase()}
+            </span>
           </h1>
-          <p className="text-xl font-bold text-gray-600 max-w-3xl mx-auto">{svc.description}</p>
+          <p className="text-xl font-bold text-gray-600 max-w-3xl mx-auto">
+            {svc.description}
+          </p>
           <p className="font-bold text-gray-500 mt-3 text-sm">
             {loc.streetAddress}, {loc.name} · {loc.postalCode} · {loc.telephone}
           </p>
@@ -148,16 +179,25 @@ export default async function LocationService({ params }: Props) {
             content={combinedContent}
             description={`${svc.description} — Local delivery for ${loc.displayName}.`}
             image={svc.image}
-            packages={svc.slug === "web-development" || svc.slug === "seo" ? svc.packages : undefined}
+            packages={
+              svc.slug === "web-development" || svc.slug === "seo"
+                ? svc.packages
+                : undefined
+            }
             gallery={svc.gallery}
           />
 
           <div className="space-y-8">
-            <Technologies title="Methodologies" technologies={svc.technologies ?? []} />
+            <Technologies
+              title="Methodologies"
+              technologies={svc.technologies ?? []}
+            />
 
             {/* Local trust + NAP */}
             <div className="bg-white p-6 neo-brutalist-border neo-brutalist-shadow">
-              <h3 className="font-black text-lg mb-3">VISIT US IN {loc.displayName.toUpperCase()}</h3>
+              <h3 className="font-black text-lg mb-3">
+                VISIT US IN {loc.displayName.toUpperCase()}
+              </h3>
               <div className="font-bold text-sm space-y-1 text-gray-700">
                 <div>{loc.streetAddress}</div>
                 <div>
@@ -175,10 +215,16 @@ export default async function LocationService({ params }: Props) {
                 </div>
               </div>
               <div className="flex flex-wrap gap-2 mt-4">
-                <Link href="/contact" className="bg-lime-400 px-4 py-2 neo-brutalist-border font-black text-sm">
+                <Link
+                  href="/contact"
+                  className="bg-lime-400 px-4 py-2 neo-brutalist-border font-black text-sm"
+                >
                   GET QUOTE
                 </Link>
-                <a href={`https://wa.me/${loc.telephone.replace("+", "")}`} className="bg-black text-white px-4 py-2 neo-brutalist-border font-black text-sm">
+                <a
+                  href={`https://wa.me/${loc.telephone.replace("+", "")}`}
+                  className="bg-black text-white px-4 py-2 neo-brutalist-border font-black text-sm"
+                >
                   WhatsApp Us
                 </a>
               </div>
@@ -187,7 +233,9 @@ export default async function LocationService({ params }: Props) {
             {/* Other services at this location */}
             {otherServices.length > 0 && (
               <div className="bg-white p-6 neo-brutalist-border neo-brutalist-shadow">
-                <h3 className="font-black mb-3">OTHER SERVICES IN {loc.displayName.toUpperCase()}</h3>
+                <h3 className="font-black mb-3">
+                  OTHER SERVICES IN {loc.displayName.toUpperCase()}
+                </h3>
                 <ul className="space-y-2">
                   {otherServices.map((os) => (
                     <li key={os.slug}>
@@ -200,7 +248,10 @@ export default async function LocationService({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-                <Link href={`/locations/${loc.slug}`} className="font-bold text-sm text-gray-600 mt-3 inline-block">
+                <Link
+                  href={`/locations/${loc.slug}`}
+                  className="font-bold text-sm text-gray-600 mt-3 inline-block"
+                >
                   View all services in {loc.displayName} →
                 </Link>
               </div>
@@ -210,7 +261,10 @@ export default async function LocationService({ params }: Props) {
             <div className="bg-gray-100 p-6 neo-brutalist-border">
               <p className="font-bold text-sm text-gray-600">
                 Also available nationally:{" "}
-                <Link href={`/services/${svc.slug}`} className="font-black text-black underline">
+                <Link
+                  href={`/services/${svc.slug}`}
+                  className="font-black text-black underline"
+                >
                   {svc.title} (all areas)
                 </Link>
               </p>
@@ -218,8 +272,14 @@ export default async function LocationService({ params }: Props) {
           </div>
         </div>
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
+        />
       </div>
     </div>
   );

@@ -17,9 +17,8 @@ export const services = [
       <li>Fully custom design (no generic templates)</li>
       <li>Mobile-first responsive layout</li>
       <li>Contact forms + WhatsApp click-to-chat</li>
-      <li>Basic on-page SEO setup</li>
-      <li>Google Analytics & Search Console setup</li>
-      <li>SSL certificate & secure hosting guidance</li>
+      <li>SEO setup on Professional and Premium plans</li>
+      <li>Google Analytics & Search Console setup on the Premium plan</li>      <li>SSL certificate & secure hosting guidance</li>
       <li>1-6 months free support (depending on package)</li>
     </ul>`,
     packages,
@@ -84,7 +83,8 @@ export const services = [
     title: "SEO SERVICES",
     slug: "seo",
     category: "Marketing",
-    seoTitle: "SEO Services South Africa | Local SEO for Small Businesses | Mogen",
+    seoTitle:
+      "SEO Services South Africa | Local SEO for Small Businesses | Mogen",
     description:
       "Local SEO that gets you found on Google. Google Business Profile, on-page optimisation and content that brings real enquiries from nearby customers.",
     content: `<h2 class="text-3xl font-black text-black-400 uppercase">Local SEO That Brings Real Customers</h2>
@@ -103,6 +103,11 @@ export const services = [
     <p>We don't promise overnight #1 rankings. We build sustainable visibility that compounds. Every action is tied to enquiries — more calls and WhatsApps, not just impressions.</p>`,
     color: "bg-emerald-500",
     borderColor: "border-emerald-500",
-    technologies: ["Google Business Profile", "Local SEO", "On-Page SEO", "Analytics"],
+    technologies: [
+      "Google Business Profile",
+      "Local SEO",
+      "On-Page SEO",
+      "Analytics",
+    ],
   },
 ];
