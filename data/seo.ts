@@ -81,6 +81,16 @@ export const SERVICE_KEYWORDS: Record<string, string[]> = {
     "online marketing small business",
     "whatsapp marketing south africa",
   ],
+  seo: [
+    "seo services south africa",
+    "local seo soshanguve",
+    "local seo maboloka",
+    "google business profile optimisation",
+    "seo pretoria",
+    "small business seo south africa",
+    "seo agency gauteng",
+    "seo north west",
+  ],
 };
 
 export const SERVICE_DESCRIPTIONS: Record<string, string> = {
@@ -92,4 +102,17 @@ export const SERVICE_DESCRIPTIONS: Record<string, string> = {
     "Logos, colour palettes, and visual systems that make your business unforgettable. MOGEN creates brand identities that stand out in the South African market.",
   "digital-marketing":
     "SEO, social media management, and content that brings in real customers. MOGEN helps South African businesses get found online and grow their digital presence.",
+  seo: "Local SEO services for South African small businesses. Google Business Profile optimisation, on-page SEO and content that gets you found in Maboloka, Soshanguve and Tshwane.",
+};
+
+export const SERVICE_DESCRIPTIONS_TEMPLATE: Record<string, string> = {
+  "web-development":
+    "Custom, fast, and mobile-friendly websites built with modern technology. MOGEN delivers responsive web development for {{location}} businesses — from landing pages to full e-commerce platforms.",
+  "mobile-development":
+    "Native and cross-platform mobile apps built for Android and iOS. MOGEN develops custom mobile solutions for {{location}} businesses of all sizes.",
+  "brand-identity":
+    "Logos, colour palettes, and visual systems that make your business unforgettable. MOGEN creates brand identities that stand out in the {{location}} market.",
+  "digital-marketing":
+    "SEO, social media management, and content that brings in real customers. MOGEN helps {{location}} businesses get found online and grow their digital presence.",
+  seo: "Local SEO services for {{location}} small businesses. Google Business Profile optimisation, on-page SEO and content that gets you found in {{location}} and surrounding areas.",
 };

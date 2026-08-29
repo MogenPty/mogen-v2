@@ -18,10 +18,36 @@ export default function SiteFooter() {
               BOLD WEB SOLUTIONS FOR LOCAL BUSINESSES
             </p>
             <p className="text-gray-400">
-              Serving Maboloka, Soshanguve, and neighbouring regions with
-              affordable, world-class web development and brand identity
-              services.
+              Serving Brits (0250), Maboloka (0197), Pretoria (0002) and
+              Soshanguve (0152) with affordable, world-class web development and
+              brand identity services.
             </p>
+            <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
+              <Link
+                href="/locations/brits"
+                className="bg-white text-black px-2 py-1 neo-brutalist-border-thin"
+              >
+                BRITS
+              </Link>
+              <Link
+                href="/locations/maboloka"
+                className="bg-white text-black px-2 py-1 neo-brutalist-border-thin"
+              >
+                MABOLOKA
+              </Link>
+              <Link
+                href="/locations/pretoria"
+                className="bg-white text-black px-2 py-1 neo-brutalist-border-thin"
+              >
+                PRETORIA
+              </Link>
+              <Link
+                href="/locations/soshanguve"
+                className="bg-white text-black px-2 py-1 neo-brutalist-border-thin"
+              >
+                SOSHANGUVE
+              </Link>
+            </div>
           </div>
 
           <div>
@@ -51,6 +77,43 @@ export default function SiteFooter() {
                   className="hover:text-lime-400 font-bold"
                 >
                   PRICING
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/locations"
+                  className="hover:text-lime-400 font-bold"
+                >
+                  LOCATIONS
+                </Link>
+              </li>
+              <li className="pl-3 border-l-2 border-gray-700 space-y-1 flex flex-wrap gap-x-1">
+                <Link
+                  href="/locations/brits"
+                  className="hover:text-lime-400 font-bold text-sm"
+                >
+                  BRITS
+                </Link>
+                <span className="text-gray-600 text-sm"> · </span>
+                <Link
+                  href="/locations/maboloka"
+                  className="hover:text-lime-400 font-bold text-sm"
+                >
+                  MABOLOKA
+                </Link>
+                <span className="text-gray-600 text-sm"> · </span>
+                <Link
+                  href="/locations/pretoria"
+                  className="hover:text-lime-400 font-bold text-sm"
+                >
+                  PRETORIA
+                </Link>
+                <span className="text-gray-600 text-sm"> · </span>
+                <Link
+                  href="/locations/soshanguve"
+                  className="hover:text-lime-400 font-bold text-sm"
+                >
+                  SOSHANGUVE
                 </Link>
               </li>
               <li>

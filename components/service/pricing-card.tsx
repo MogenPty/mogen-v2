@@ -18,7 +18,7 @@ export default function PricingCard({
   return (
     <div
       key={pricingPackage.name}
-      className={`relative bg-white p-8 m-4 md:mx-8 neo-brutalist-border neo-brutalist-shadow transform ${cardIndex % 2 === 0 ? "rotate-1" : "-rotate-1"} ${pricingPackage.popular ? "scale-105" : ""}`}
+      className={`relative bg-white p-8 m-4 md:mx-1 neo-brutalist-border neo-brutalist-shadow transform ${cardIndex % 3 === 2 ? "rotate-1" : cardIndex % 3 === 1 ? "rotate-0" : "-rotate-1"} ${pricingPackage.popular ? "scale-105" : ""}`}
     >
       {pricingPackage.popular && (
         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">

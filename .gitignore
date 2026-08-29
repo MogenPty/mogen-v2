@@ -20,6 +20,9 @@
 # production
 /build
 
+# mogen seo
+/.seo/
+
 # misc
 .DS_Store
 *.pem

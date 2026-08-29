@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { sampleArticles } from "@/data/articles";
+import { getLocationServiceCombos, locations } from "@/data/locations";
 import { portfolioItems } from "@/data/portfolio";
 import { services } from "@/data/services";
 
@@ -24,6 +25,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         | "weekly"
         | "monthly",
       priority: p === "" ? 1.0 : 0.8,
+    })),
+    { url: `${BASE}/locations`, lastModified: new Date(), priority: 0.85, changeFrequency: "weekly" as const },
+    ...locations.map((l) => ({
+      url: `${BASE}/locations/${l.slug}`,
+      lastModified: new Date(),
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    })),
+    ...getLocationServiceCombos().map(({ location, service }) => ({
+      url: `${BASE}/locations/${location}/${service}`,
+      lastModified: new Date(),
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
     })),
     ...services.map((s) => ({
       url: `${BASE}/services/${s.slug}`,

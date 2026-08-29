@@ -66,8 +66,10 @@ export default async function Service({ params }: Props) {
           {/* Main Content */}
           <ServiceDetails
             title={service.title}
+            content={service.content}
             description={service.description}
             image={service.image}
+            packages={service.packages}
             gallery={service.gallery}
           />
 

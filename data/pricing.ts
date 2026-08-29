@@ -1,3 +1,10 @@
+export type PackageFeatureValue = string | boolean;
+
+export interface PackageFeature {
+  label: string;
+  value: PackageFeatureValue;
+}
+
 export interface Package {
   name: string;
   price: string;
@@ -5,10 +12,10 @@ export interface Package {
   foreColor?: string;
   backgroundColor?: string;
   popular: boolean;
-  features: string[];
+  features: (string | PackageFeature)[];
 }
 
-const packages = [
+const packages: Package[] = [
   {
     name: "STARTER",
     price: "R2,999",
@@ -16,11 +23,19 @@ const packages = [
     backgroundColor: "bg-blue-600",
     popular: false,
     features: [
-      "5-page custom website",
-      "Mobile responsive design",
-      "Contact form",
-      "Basic SEO setup",
-      "1 month support",
+      { label: "Number of pages", value: "5 pages" },
+      { label: "Custom design", value: true },
+      { label: "Mobile responsive", value: true },
+      { label: "Contact form", value: true },
+      { label: "WhatsApp integration", value: true },
+      { label: "SEO setup", value: false },
+      { label: "Online booking system", value: false },
+      { label: "E-commerce", value: false },
+      { label: "Analytics setup", value: false },
+      { label: "Content management", value: false },
+      { label: "Brand identity package", value: false },
+      { label: "Social media integration", value: false },
+      { label: "Support", value: "1 month" },
     ],
   },
   {
@@ -30,12 +45,19 @@ const packages = [
     backgroundColor: "bg-purple-500",
     popular: true,
     features: [
-      "10-page custom website",
-      "Professional design",
-      "Online booking system",
-      "Advanced SEO",
-      "Social media integration",
-      "3 months support",
+      { label: "Number of pages", value: "10 pages" },
+      { label: "Custom design", value: "Professional" },
+      { label: "Mobile responsive", value: true },
+      { label: "Contact form", value: true },
+      { label: "WhatsApp integration", value: true },
+      { label: "SEO setup", value: "Basic" },
+      { label: "Online booking system", value: true },
+      { label: "E-commerce", value: false },
+      { label: "Analytics setup", value: false },
+      { label: "Content management", value: false },
+      { label: "Brand identity package", value: false },
+      { label: "Social media integration", value: true },
+      { label: "Support", value: "3 months" },
     ],
   },
   {
@@ -46,13 +68,19 @@ const packages = [
     backgroundColor: "bg-lime-400",
     popular: false,
     features: [
-      "Unlimited pages",
-      "Custom functionality",
-      "E-commerce ready",
-      "Analytics setup",
-      "Content management",
-      "Brand identity package",
-      "6 months support",
+      { label: "Number of pages", value: "Unlimited" },
+      { label: "Custom design", value: "Bespoke + functionality" },
+      { label: "Mobile responsive", value: true },
+      { label: "Contact form", value: true },
+      { label: "WhatsApp integration", value: true },
+      { label: "SEO setup", value: "Advanced" },
+      { label: "Online booking system", value: true },
+      { label: "E-commerce", value: true },
+      { label: "Analytics setup", value: true },
+      { label: "Content management", value: true },
+      { label: "Brand identity package", value: true },
+      { label: "Social media integration", value: true },
+      { label: "Support", value: "6 months" },
     ],
   },
 ];
