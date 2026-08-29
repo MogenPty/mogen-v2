@@ -1,9 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import PricingComparisonTable from "@/components/service/pricing-comparison-table";
+import type { Package } from "@/data/pricing";
 
 interface Props {
   description: string;
+  content?: string;
+  packages?: Package[];
   image?: string;
   gallery?: string[];
   title: string;
@@ -11,10 +15,12 @@ interface Props {
 
 export default function ServiceDetails({
   description,
+  content,
+  packages,
   gallery,
   image,
   title,
-}: Props) {
+}: Readonly<Props>) {
   return (
     <div className="lg:col-span-2 space-y-12">
       {/* Featured Image */}
@@ -37,6 +43,18 @@ export default function ServiceDetails({
         </h2>
         <p className="text-lg font-bold leading-relaxed mb-6">{description}</p>
       </div>
+
+      {content && (
+        <div className="bg-white p-8 neo-brutalist-border neo-brutalist-shadow transform">
+          <div
+            className="grid grid-cols-1 gap-6"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Need this HTML
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        </div>
+      )}
+
+      {packages && packages.length > 0 && <PricingComparisonTable packages={packages} />}
 
       {/* Project Gallery */}
       {gallery && (

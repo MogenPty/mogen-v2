@@ -1,11 +1,12 @@
 "use client";
 
-import { HamburgerIcon, XLogoIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, HamburgerIcon, XLogoIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { locations } from "@/data/locations";
 import { createPageUrl } from "@/lib/utils";
 
 const navigationItems = [
@@ -19,14 +20,21 @@ const navigationItems = [
   { title: "Contact", url: createPageUrl("Contact") },
 ];
 
+// Alphabetical order: Brits, Maboloka, Pretoria, Soshanguve
+const locationNavItems = [...locations].sort((a, b) => a.name.localeCompare(b.name));
+
 export default function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLocationsOpen, setIsLocationsOpen] = useState(false);
+  const [isMobileLocationsOpen, setIsMobileLocationsOpen] = useState(false);
   const location = usePathname();
 
   let selectedNav = location;
 
   if (selectedNav.split("/").length > 0)
     selectedNav = `/${selectedNav.split("/")[1]}`;
+
+  const isLocationsActive = selectedNav === "/locations";
 
   return (
     <header className="bg-white neo-brutalist-border border-t-0 border-l-0 border-r-0 sticky top-0 z-50">
@@ -54,6 +62,49 @@ export default function SiteHeader() {
                 {item.title.toUpperCase()}
               </Link>
             ))}
+            {/* Locations dropdown - alphabetical */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsLocationsOpen(true)}
+              onMouseLeave={() => setIsLocationsOpen(false)}
+            >
+              <Link
+                href="/locations"
+                className={`px-3 py-2 font-bold text-sm transition-all duration-200 flex items-center gap-1 ${
+                  isLocationsActive
+                    ? "bg-purple-500 text-white neo-brutalist-border neo-brutalist-shadow-sm transform -rotate-1"
+                    : "hover:bg-lime-400 hover:neo-brutalist-border hover:neo-brutalist-shadow-sm hover:transform hover:-rotate-1"
+                }`}
+              >
+                LOCATIONS
+                <CaretDownIcon className={`w-3 h-3 transition-transform ${isLocationsOpen ? "rotate-180" : ""}`} />
+              </Link>
+              {isLocationsOpen && (
+                <div className="absolute left-0 top-full pt-2 z-50">
+                  <div className="bg-white neo-brutalist-border neo-brutalist-shadow min-w-[200px] py-1">
+                    <Link
+                      href="/locations"
+                      className="block px-4 py-2 font-black text-sm hover:bg-lime-400 hover:neo-brutalist-border-thin m-1"
+                      onClick={() => setIsLocationsOpen(false)}
+                    >
+                      ALL LOCATIONS
+                    </Link>
+                    <div className="border-t-2 border-black mx-2 my-1" />
+                    {locationNavItems.map((loc) => (
+                      <Link
+                        key={loc.slug}
+                        href={`/locations/${loc.slug}`}
+                        className="block px-4 py-2 font-bold text-sm hover:bg-gray-100 m-1 hover:neo-brutalist-border-thin"
+                        onClick={() => setIsLocationsOpen(false)}
+                      >
+                        {loc.displayName.toUpperCase()}
+                        <span className="font-normal text-gray-500 ml-2 text-xs">{loc.postalCode}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* CTA Button */}
@@ -98,6 +149,42 @@ export default function SiteHeader() {
                 {item.title.toUpperCase()}
               </Link>
             ))}
+            {/* Mobile Locations - collapsible, alphabetical */}
+            <div>
+              <button
+                type="button"
+                onClick={() => setIsMobileLocationsOpen(!isMobileLocationsOpen)}
+                className={`w-full flex items-center justify-between px-3 py-2 text-base font-bold ${
+                  isLocationsActive
+                    ? "bg-purple-500 text-white neo-brutalist-border neo-brutalist-shadow-sm"
+                    : "hover:bg-lime-400 hover:neo-brutalist-border hover:neo-brutalist-shadow-sm"
+                }`}
+              >
+                LOCATIONS
+                <CaretDownIcon className={`w-4 h-4 transition-transform ${isMobileLocationsOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isMobileLocationsOpen && (
+                <div className="pl-4 mt-1 space-y-1 border-l-4 border-black ml-3">
+                  <Link
+                    href="/locations"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-3 py-2 text-sm font-black hover:bg-lime-400 hover:neo-brutalist-border-thin"
+                  >
+                    ALL LOCATIONS
+                  </Link>
+                  {locationNavItems.map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      href={`/locations/${loc.slug}`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block px-3 py-2 text-sm font-bold hover:bg-gray-100"
+                    >
+                      {loc.displayName.toUpperCase()} <span className="text-gray-500 font-normal">{loc.postalCode}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               href={createPageUrl("Contact")}
               onClick={() => setIsMenuOpen(false)}
