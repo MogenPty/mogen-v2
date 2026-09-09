@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import PricingComparisonTable from "@/components/service/pricing-comparison-table";
+import CallToActionBlock, {
+  type CallToAction,
+} from "@/components/shared/call-to-action";
 import type { Package } from "@/data/pricing";
 
 interface Props {
@@ -10,6 +13,7 @@ interface Props {
   packages?: Package[];
   image?: string;
   gallery?: string[];
+  cta?: CallToAction;
   title: string;
 }
 
@@ -18,6 +22,7 @@ export default function ServiceDetails({
   content,
   packages,
   gallery,
+  cta,
   image,
   title,
 }: Readonly<Props>) {
@@ -37,15 +42,15 @@ export default function ServiceDetails({
       )}
 
       {/* Service Overview */}
-      <div className="bg-black text-white p-8 neo-brutalist-border neo-brutalist-shadow transform rotate-1">
+      {/* <div className="bg-black text-white p-8 neo-brutalist-border neo-brutalist-shadow transform rotate-1">
         <h2 className="text-3xl font-black text-lime-400 mb-6">
           SERVICE OVERVIEW
         </h2>
         <p className="text-lg font-bold leading-relaxed mb-6">{description}</p>
-      </div>
+      </div> */}
 
       {content && (
-        <div className="bg-white p-8 neo-brutalist-border neo-brutalist-shadow transform">
+        <div className="bg-white p-8 neo-brutalist-border neo-brutalist-shadow transform -rotate-1">
           <div
             className="grid grid-cols-1 gap-6"
             // biome-ignore lint/security/noDangerouslySetInnerHtml: Need this HTML
@@ -54,10 +59,20 @@ export default function ServiceDetails({
         </div>
       )}
 
-      {packages && packages.length > 0 && <PricingComparisonTable packages={packages} />}
+      {packages && packages.length > 0 && (
+        <PricingComparisonTable packages={packages} className="rotate-1" />
+      )}
+
+      {cta && (
+        <CallToActionBlock
+          textColor={cta.textColor}
+          title={cta.title}
+          subtitle={cta.subtitle}
+        />
+      )}
 
       {/* Project Gallery */}
-      {gallery && (
+      {/* {gallery && (
         <div className="bg-white p-8 neo-brutalist-border neo-brutalist-shadow transform -rotate-1">
           <h2 className="text-3xl font-black mb-6">PROJECT GALLERY</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,7 +92,7 @@ export default function ServiceDetails({
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

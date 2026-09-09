@@ -5,18 +5,21 @@ import Link from "next/link";
 import { useMemo } from "react";
 
 import ButtonColored from "@/components/shared/button-colored";
-import type { Package, PackageFeature, PackageFeatureValue } from "@/data/pricing";
-import { createPageUrl } from "@/lib/utils";
+import type {
+  Package,
+  PackageFeature,
+  PackageFeatureValue,
+} from "@/data/pricing";
+import { cn, createPageUrl } from "@/lib/utils";
 
 interface Props {
   packages: Package[];
   title?: string;
   caption?: string;
+  className?: string;
 }
 
-function isPackageFeature(
-  f: string | PackageFeature,
-): f is PackageFeature {
+function isPackageFeature(f: string | PackageFeature): f is PackageFeature {
   return typeof f === "object" && f !== null && "label" in f;
 }
 
@@ -24,9 +27,10 @@ function normalizeKey(label: string): string {
   return label.trim().toLowerCase();
 }
 
-function getLabelAndValue(
-  f: string | PackageFeature,
-): { label: string; value: PackageFeatureValue } {
+function getLabelAndValue(f: string | PackageFeature): {
+  label: string;
+  value: PackageFeatureValue;
+} {
   if (isPackageFeature(f)) return { label: f.label, value: f.value };
   return { label: f, value: true };
 }
@@ -58,18 +62,35 @@ export function buildPricingMatrix(packages: Package[]) {
   return { featureOrder, keyToLabel, matrix, packageOrder };
 }
 
-function RenderValue({ value }: { value: PackageFeatureValue | undefined }) {
+function RenderValue({
+  value,
+}: Readonly<{ value: PackageFeatureValue | undefined }>) {
   if (value === undefined || value === false) {
-    return <MinusIcon className="w-5 h-5 text-gray-300 mx-auto" weight="bold" aria-label="Not included" />;
+    return (
+      <MinusIcon
+        className="w-5 h-5 text-gray-300 mx-auto"
+        weight="bold"
+        aria-label="Not included"
+      />
+    );
   }
   if (value === true) {
-    return <CheckIcon className="w-6 h-6 text-lime-500 mx-auto" weight="bold" aria-label="Included" />;
+    return (
+      <CheckIcon
+        className="w-6 h-6 text-lime-500 mx-auto"
+        weight="bold"
+        aria-label="Included"
+      />
+    );
   }
-  return <span className="font-bold text-sm text-gray-800">{String(value)}</span>;
+  return (
+    <span className="font-bold text-sm text-gray-800">{String(value)}</span>
+  );
 }
 
 export default function PricingComparisonTable({
   packages,
+  className,
   title = "COMPARE PACKAGES",
   caption = "Pricing comparison table",
 }: Readonly<Props>) {
@@ -78,11 +99,19 @@ export default function PricingComparisonTable({
     [packages],
   );
 
-  if (!packages || packages.length === 0 || featureOrder.length === 0) return null;
+  if (!packages || packages.length === 0 || featureOrder.length === 0)
+    return null;
 
   return (
-    <div className="bg-white p-4 md:p-6 neo-brutalist-border neo-brutalist-shadow transform rotate-1">
-      <h2 className="text-2xl md:text-3xl font-black mb-4 uppercase">{title}</h2>
+    <div
+      className={cn(
+        className,
+        "bg-white p-4 md:p-6 neo-brutalist-border neo-brutalist-shadow transform",
+      )}
+    >
+      <h2 className="text-2xl md:text-3xl font-black mb-4 uppercase">
+        {title}
+      </h2>
       <p className="sr-only">{caption}</p>
 
       <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
@@ -103,7 +132,9 @@ export default function PricingComparisonTable({
                   className="text-center p-3 md:p-4 min-w-[150px] border-l-2 border-white/20 align-top"
                 >
                   <div className="flex flex-col items-center gap-2">
-                    <span className="font-black text-base md:text-lg leading-none">{pkg.name}</span>
+                    <span className="font-black text-base md:text-lg leading-none">
+                      {pkg.name}
+                    </span>
                     <span
                       className={`${pkg.backgroundColor ?? "bg-white"} ${pkg.foreColor ?? "text-white"} px-3 py-1 font-black text-sm neo-brutalist-border neo-brutalist-shadow-sm whitespace-nowrap`}
                     >
@@ -151,11 +182,18 @@ export default function PricingComparisonTable({
           </tbody>
           <tfoot>
             <tr className="bg-white border-t-2 border-black">
-              <th scope="row" className="p-4 sticky left-0 bg-white z-10 border-r-2 border-black" aria-hidden>
+              <th
+                scope="row"
+                className="p-4 sticky left-0 bg-white z-10 border-r-2 border-black"
+                aria-hidden
+              >
                 <span className="sr-only">Actions</span>
               </th>
               {packageOrder.map((pkg) => (
-                <td key={`cta-${pkg.name}`} className="p-3 md:p-4 text-center border-l-2 border-black/10">
+                <td
+                  key={`cta-${pkg.name}`}
+                  className="p-3 md:p-4 text-center border-l-2 border-black/10"
+                >
                   <Link href={createPageUrl("Contact")}>
                     <ButtonColored
                       foreColor={pkg.foreColor}
@@ -172,7 +210,9 @@ export default function PricingComparisonTable({
         </table>
       </div>
 
-      <p className="mt-3 text-xs font-bold text-gray-500 md:hidden">← Scroll horizontally to compare →</p>
+      <p className="mt-3 text-xs font-bold text-gray-500 md:hidden">
+        ← Scroll horizontally to compare →
+      </p>
     </div>
   );
 }

@@ -10,21 +10,19 @@ import CTASection from "@/components/home/cta-section";
 import { sampleArticles } from "@/data/articles";
 import { generateSlug, list } from "@/lib/utils";
 
-// import { Skeleton } from "@/components/ui/skeleton";
-
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const articles = await list(sampleArticles);
+  const articles = list(sampleArticles);
   return articles.map((article) => ({
     slug: generateSlug(article.title),
   }));
 }
 
 const getArticleBySlug = async (slug: string) => {
-  const articles = await list(sampleArticles);
+  const articles = list(sampleArticles);
   const article = articles.find(
     (item) => (item.slug ?? generateSlug(item.title)) === slug,
   );
@@ -32,6 +30,9 @@ const getArticleBySlug = async (slug: string) => {
 };
 
 export const dynamicParams = false;
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mogen.co.za";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "MOGEN";
 
 export const generateMetadata = async ({
   params,
@@ -52,17 +53,17 @@ export const generateMetadata = async ({
 
   return {
     title: article.title,
-    description: article.excerpt,
+    description: article.excerpt.slice(0, 155),
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `${siteUrl}/blog/${slug}`,
     },
     authors: [{ name: article.author }],
     openGraph: {
-      url: `/blog/${slug}`,
+      url: `${siteUrl}/blog/${slug}`,
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.publishedAt,
-      authors: ["MOGEN", "/about"],
+      authors: ["MOGEN", article.author === siteName ? "" : article.author],
       section: article.category,
       tags: article.tags,
     },
@@ -72,7 +73,7 @@ export const generateMetadata = async ({
   };
 };
 
-export default async function PortfolioDetail({ params }: Props) {
+export default async function PortfolioDetail({ params }: Readonly<Props>) {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
 

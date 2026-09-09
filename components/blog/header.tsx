@@ -5,9 +5,15 @@ export default function BlogHeader() {
         THE MOGEN BLOG
       </div>
       <h1 className="text-5xl lg:text-7xl font-black mb-6">
-        <span className="block text-black transform rotate-1">KNOWLEDGE</span>{" "}
-        <span className="block text-lime-500 transform -rotate-1">IS</span>{" "}
-        <span className="block text-blue-600 transform rotate-1">POWER</span>
+        <span className="block text-black transform rotate-1 uppercase">
+          Web &amp; Digital
+        </span>{" "}
+        <span className="block text-lime-500 transform -rotate-1 uppercase">
+          Insights
+        </span>{" "}
+        <span className="block text-blue-600 transform rotate-1 uppercase">
+          for SA Businesses
+        </span>
       </h1>
       <p className="text-xl font-bold text-gray-600 max-w-2xl mx-auto">
         Free tips, guides, and insights to help you dominate the digital world.
