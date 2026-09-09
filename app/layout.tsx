@@ -15,21 +15,22 @@ const oxaniumSans = Oxanium({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mogen.co.za";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "MOGEN";
 
 export const metadata: Metadata = {
   title: {
-    default: "Web Development and Digital Innovation Agency | Mogen Pty Ltd",
-    template: "%s | Mogen Pty Ltd",
+    default: `Web Development and Digital Innovation Agency | ${siteName}`,
+    template: `%s | ${siteName}`,
   },
   description:
     "Full-stack web development, branding & digital marketing for South African businesses. Fast delivery, affordable pricing.",
-  authors: [{ name: "Mogen Pty Ltd" }],
-  creator: "Mogen Pty Ltd",
-  publisher: "Mogen Pty Ltd",
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
   metadataBase: new URL(siteUrl),
   openGraph: {
     url: siteUrl,
-    siteName: "Mogen Pty Ltd",
+    siteName: siteName,
     locale: "en_ZA",
     type: "website",
   },
