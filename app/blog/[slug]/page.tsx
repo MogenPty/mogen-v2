@@ -63,7 +63,9 @@ export const generateMetadata = async ({
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.publishedAt,
-      authors: ["MOGEN", article.author === siteName ? "" : article.author],
+      authors: [siteName, article.author === siteName ? "" : article.author].filter(
+        Boolean,
+      ),
       section: article.category,
       tags: article.tags,
     },
